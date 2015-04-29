@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>DNAViewer xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../apidocs/nl/tudelft/dnainator/ui/DNAViewer.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> nl.tudelft.dnainator.ui;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.DNAGraph;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.DNALayout;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> org.graphstream.graph.Graph;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.graphstream.ui.layout.Layout;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.graphstream.ui.view.Viewer;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment"> * The viewer is responsible for managing the interactable views of the the strain graph.</em>
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <em class="jxr_javadoccomment"> * Use the addDefaultView() method to obtain a view.</em>
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../nl/tudelft/dnainator/ui/DNAViewer.html">DNAViewer</a> <strong class="jxr_keyword">extends</strong> Viewer {
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">	 * Creates a new GraphViewer.</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../nl/tudelft/dnainator/ui/DNAViewer.html">DNAViewer</a>() {
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  		<strong class="jxr_keyword">this</strong>(<strong class="jxr_keyword">new</strong> <a href="../../../../nl/tudelft/dnainator/graph/DNAGraph.html">DNAGraph</a>(), ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	}
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment">	 * Creates a new GraphViewer.</em>
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment">	 * @param graph	The graph of strains.</em>
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">	 * @param model	The ThreadingModel to use.</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../nl/tudelft/dnainator/ui/DNAViewer.html">DNAViewer</a>(Graph graph, ThreadingModel model) {
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  		<strong class="jxr_keyword">super</strong>(graph, model);
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  		
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  		Layout layout = <strong class="jxr_keyword">new</strong> <a href="../../../../nl/tudelft/dnainator/graph/DNALayout.html">DNALayout</a>(graph);
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  		<strong class="jxr_keyword">this</strong>.enableAutoLayout(layout);
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  		<strong class="jxr_keyword">this</strong>.setCloseFramePolicy(Viewer.CloseFramePolicy.EXIT);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	}
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2015. All rights reserved.</div>
+</body>
+</html>
