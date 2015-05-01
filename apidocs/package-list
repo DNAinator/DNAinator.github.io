@@ -7,4 +7,3 @@ nl.tudelft.dnainator.parser.buffered
 nl.tudelft.dnainator.parser.exceptions
 nl.tudelft.dnainator.ui
 nl.tudelft.dnainator.ui.actions
-nl.tudelft.dnainator.util
