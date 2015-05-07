@@ -1,9 +1,11 @@
 nl.tudelft.dnainator
 nl.tudelft.dnainator.core
-nl.tudelft.dnainator.core.graph
+nl.tudelft.dnainator.core.impl
 nl.tudelft.dnainator.graph
 nl.tudelft.dnainator.parser
-nl.tudelft.dnainator.parser.buffered
 nl.tudelft.dnainator.parser.exceptions
+nl.tudelft.dnainator.parser.impl
 nl.tudelft.dnainator.ui
-nl.tudelft.dnainator.ui.actions
+nl.tudelft.dnainator.ui.controllers
+nl.tudelft.dnainator.ui.services
+nl.tudelft.dnainator.ui.widgets

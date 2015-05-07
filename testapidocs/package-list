@@ -2,3 +2,4 @@ nl.tudelft.dnainator
 nl.tudelft.dnainator.graph
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.buffered
+nl.tudelft.dnainator.ui.services
