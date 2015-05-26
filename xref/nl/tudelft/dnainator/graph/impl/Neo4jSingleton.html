@@ -21,7 +21,7 @@
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <em class="jxr_javadoccomment"> */</em>
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jSingleton.html">Neo4jSingleton</a> {
 <a class="jxr_linenumber" name="L15" href="#L15">15</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jSingleton.html">Neo4jSingleton</a> INSTANCE = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jSingleton.html">Neo4jSingleton</a>();
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DB_PATH = <span class="jxr_string">"target/neo4j-hello-db"</span>;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DB_PATH = <span class="jxr_string">"target/dna-graph-db"</span>;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  	<strong class="jxr_keyword">private</strong> Map&lt;String, Neo4jGraph&gt; neodatabases;
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  
@@ -69,30 +69,39 @@
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  	}
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * Stops the database associated with the specified path, if it exists.</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 * FIXME: {@link Neo4jGraph} does not handle persistence very well yet</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 * @param path	the path to the database</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 * @throws IOException	when the database could not be deleted </em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stopDatabase(String path) <strong class="jxr_keyword">throws</strong> IOException {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">if</strong> (neodatabases.containsKey(path)) {
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  			neodatabases.get(path).getService().shutdown();
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  			neodatabases.remove(path);
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		}
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  		FileUtils.deleteRecursively(<strong class="jxr_keyword">new</strong> File(path));
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	}
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	<em class="jxr_comment">// FIXME: {@link Neo4jGraph} does not handle persistence very well yet</em>
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<em class="jxr_comment">//	/**</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	<em class="jxr_comment">//	 * Stops and deletes the database associated with the specified path, if it exists.</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	<em class="jxr_comment">//	 * @param path	the path to the database</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<em class="jxr_comment">//	 * @throws IOException	when the database could not be deleted</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	<em class="jxr_comment">//	 */</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	<em class="jxr_comment">//	public void deleteDatabase(String path) throws IOException {</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	<em class="jxr_comment">//		stopDatabase(path);</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<em class="jxr_comment">//		FileUtils.deleteRecursively(new File(path));</em>
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  	<em class="jxr_comment">//	}</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  <em class="jxr_javadoccomment">	 * Deletes the contents of the database associated with the default path, if it exists.</em>
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 * FIXME: {@link Neo4jGraph} seems to be unable to restart on a previously shut down path.</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> deleteDatabase() {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  		deleteDatabase(DB_PATH);
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	}
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">	 * Deletes the contents of the database associated with the specified path, if it exists.</em>
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  <em class="jxr_javadoccomment">	 * @param path	the path to the database</em>
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> deleteDatabase(String path) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">if</strong> (neodatabases.containsKey(path)) {
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  			neodatabases.get(path).clear();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		}
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	}
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">	 * Stops and deletes the the database associated with the specified path, if it exists.</em>
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">	 * FIXME: {@link Neo4jGraph} seems to be unable to restart on a previously shut down path.</em>
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">	 *        DO NOT USE THIS METHOD!</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">	 * @param path	the path to the database</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 * @throws IOException	when the database could not be deleted</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> stopDatabase(String path) <strong class="jxr_keyword">throws</strong> IOException {
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		<strong class="jxr_keyword">if</strong> (neodatabases.containsKey(path)) {
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  			neodatabases.get(path).getService().shutdown();
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  			neodatabases.remove(path);
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		}
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		FileUtils.deleteRecursively(<strong class="jxr_keyword">new</strong> File(path));
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  	}
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>
