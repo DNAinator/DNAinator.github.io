@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2015</copyright>
     <item>
-      <title>File: 68,
+      <title>File: 80,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -46,7 +46,7 @@ under the License.
           <tbody>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.models.NodeItem.java">nl/tudelft/dnainator/ui/models/NodeItem.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.SequenceNodeFactory.java">nl/tudelft/dnainator/core/SequenceNodeFactory.java</a>
                 </td>
                 <td>
                   0
@@ -60,7 +60,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.SequenceNodeFactory.java">nl/tudelft/dnainator/core/SequenceNodeFactory.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.AllClustersQuery.java">nl/tudelft/dnainator/graph/impl/query/AllClustersQuery.java</a>
                 </td>
                 <td>
                   0
@@ -200,6 +200,34 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.PropertyTypes.java">nl/tudelft/dnainator/graph/impl/PropertyTypes.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.RelTypes.java">nl/tudelft/dnainator/graph/impl/RelTypes.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.buffered.NodeParserTest.java">nl/tudelft/dnainator/parser/buffered/NodeParserTest.java</a>
                 </td>
                 <td>
@@ -214,7 +242,49 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.command.RankCommand.java">nl/tudelft/dnainator/graph/impl/command/RankCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.TreeParser.java">nl/tudelft/dnainator/parser/TreeParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.impl.Cluster.java">nl/tudelft/dnainator/core/impl/Cluster.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.ClusterEvaluator.java">nl/tudelft/dnainator/graph/impl/query/ClusterEvaluator.java</a>
                 </td>
                 <td>
                   0
@@ -284,6 +354,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.command.Command.java">nl/tudelft/dnainator/graph/impl/command/Command.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.SequenceNode.java">nl/tudelft/dnainator/core/SequenceNode.java</a>
                 </td>
                 <td>
@@ -340,7 +424,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.BufferedEdgeParser.java">nl/tudelft/dnainator/parser/BufferedEdgeParser.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.views.View.java">nl/tudelft/dnainator/ui/views/View.java</a>
                 </td>
                 <td>
                   0
@@ -354,7 +438,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.views.View.java">nl/tudelft/dnainator/ui/views/View.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.BufferedEdgeParser.java">nl/tudelft/dnainator/parser/BufferedEdgeParser.java</a>
                 </td>
                 <td>
                   0
@@ -424,7 +508,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.EdgeParser.java">nl/tudelft/dnainator/parser/EdgeParser.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.models.ClusterItem.java">nl/tudelft/dnainator/ui/models/ClusterItem.java</a>
                 </td>
                 <td>
                   0
@@ -438,7 +522,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.models.ClusterItem.java">nl/tudelft/dnainator/ui/models/ClusterItem.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.EdgeParser.java">nl/tudelft/dnainator/parser/EdgeParser.java</a>
                 </td>
                 <td>
                   0
@@ -522,6 +606,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.command.IndexCommand.java">nl/tudelft/dnainator/graph/impl/command/IndexCommand.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.impl.Edge.java">nl/tudelft/dnainator/core/impl/Edge.java</a>
                 </td>
                 <td>
@@ -537,6 +635,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.drawables.DrawableEdge.java">nl/tudelft/dnainator/ui/drawables/DrawableEdge.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.Query.java">nl/tudelft/dnainator/graph/impl/query/Query.java</a>
                 </td>
                 <td>
                   0
@@ -676,6 +788,20 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.command.TopologicalPathExpander.java">nl/tudelft/dnainator/graph/impl/command/TopologicalPathExpander.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.core.impl.SequenceNodeImpl.java">nl/tudelft/dnainator/core/impl/SequenceNodeImpl.java</a>
                 </td>
                 <td>
@@ -732,7 +858,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.HeaderParser.java">nl/tudelft/dnainator/parser/HeaderParser.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.NodeQuery.java">nl/tudelft/dnainator/graph/impl/query/NodeQuery.java</a>
                 </td>
                 <td>
                   0
@@ -760,7 +886,35 @@ under the License.
               </tr>
                           <tr>
                 <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.HeaderParser.java">nl/tudelft/dnainator/parser/HeaderParser.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.drawables.PhylogeneticNode.java">nl/tudelft/dnainator/ui/drawables/PhylogeneticNode.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.ClusterQuery.java">nl/tudelft/dnainator/graph/impl/query/ClusterQuery.java</a>
                 </td>
                 <td>
                   0
@@ -831,6 +985,20 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.widgets.contexts.ViewContext.java">nl/tudelft/dnainator/ui/widgets/contexts/ViewContext.java</a>
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+                <td>
+                  0
+                </td>
+              </tr>
+                          <tr>
+                <td>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.graph.impl.query.ClustersFromQuery.java">nl/tudelft/dnainator/graph/impl/query/ClustersFromQuery.java</a>
                 </td>
                 <td>
                   0
@@ -970,7 +1138,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.exceptions.ParseException.java">nl/tudelft/dnainator/parser/exceptions/ParseException.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.widgets.PhylogeneticTree.java">nl/tudelft/dnainator/ui/widgets/PhylogeneticTree.java</a>
                 </td>
                 <td>
                   0
@@ -984,7 +1152,7 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.ui.widgets.PhylogeneticTree.java">nl/tudelft/dnainator/ui/widgets/PhylogeneticTree.java</a>
+                  <a href="https://github.com/DNAinator/dnainator/checkstyle.html#nl.tudelft.dnainator.parser.exceptions.ParseException.java">nl/tudelft/dnainator/parser/exceptions/ParseException.java</a>
                 </td>
                 <td>
                   0
