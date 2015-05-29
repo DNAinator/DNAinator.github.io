@@ -13,10 +13,11 @@ nl.tudelft.dnainator.tree
 nl.tudelft.dnainator.ui
 nl.tudelft.dnainator.ui.controllers
 nl.tudelft.dnainator.ui.drawables
+nl.tudelft.dnainator.ui.drawables.phylogeny
 nl.tudelft.dnainator.ui.models
 nl.tudelft.dnainator.ui.services
 nl.tudelft.dnainator.ui.splashscreen
 nl.tudelft.dnainator.ui.views
-nl.tudelft.dnainator.ui.widgets
+nl.tudelft.dnainator.ui.widgets.animations
 nl.tudelft.dnainator.ui.widgets.contexts
 nl.tudelft.dnainator.ui.widgets.dialogs
