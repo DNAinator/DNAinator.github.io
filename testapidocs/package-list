@@ -2,5 +2,6 @@ nl.tudelft.dnainator.graph.impl
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.buffered
 nl.tudelft.dnainator.ui
+nl.tudelft.dnainator.ui.drawables.strains
 nl.tudelft.dnainator.ui.models
 nl.tudelft.dnainator.ui.services

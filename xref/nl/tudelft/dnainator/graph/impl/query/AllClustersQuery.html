@@ -58,12 +58,12 @@
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  		rootClusters.addAll(clusterFrom.execute(service));
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<em class="jxr_comment">// Find adjacent clusters as long as there are root clusters in the queue</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  		<strong class="jxr_keyword">while</strong> (!rootClusters.isEmpty()) {
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			Cluster c = rootClusters.poll();
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  			<strong class="jxr_keyword">if</strong> (c.getStartRank() &gt; maxRank) {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  				<strong class="jxr_keyword">break</strong>;
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  			}
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  			<em class="jxr_comment">// TODO: Might want to introduce a QueryResult class instead of this map</em>
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  		<strong class="jxr_keyword">int</strong> minrank = rootClusters.stream().mapToInt(e -&gt; e.getStartRank()).min().orElse(0);
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  		<strong class="jxr_keyword">while</strong> (!rootClusters.isEmpty()) {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  			Cluster c = rootClusters.poll();
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  			<strong class="jxr_keyword">if</strong> (c.getStartRank() &lt; minrank || c.getStartRank() &gt; maxRank) {
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  				<strong class="jxr_keyword">continue</strong>;
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  			}
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  			result.putIfAbsent(c.getStartRank(), <strong class="jxr_keyword">new</strong> ArrayList&lt;&gt;());
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  			result.get(c.getStartRank()).add(c);
 <a class="jxr_linenumber" name="L61" href="#L61">61</a>  
