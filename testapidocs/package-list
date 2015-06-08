@@ -1,7 +1,8 @@
+nl.tudelft.dnainator.annotation.impl
 nl.tudelft.dnainator.graph.impl
+nl.tudelft.dnainator.javafx
+nl.tudelft.dnainator.javafx.drawables.strains
+nl.tudelft.dnainator.javafx.services
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.buffered
-nl.tudelft.dnainator.ui
-nl.tudelft.dnainator.ui.drawables.strains
-nl.tudelft.dnainator.ui.models
-nl.tudelft.dnainator.ui.services
+nl.tudelft.dnainator.parser.impl
