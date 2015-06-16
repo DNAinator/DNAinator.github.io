@@ -1,4 +1,3 @@
-nl.tudelft.dnainator
 nl.tudelft.dnainator.annotation
 nl.tudelft.dnainator.annotation.impl
 nl.tudelft.dnainator.core
@@ -10,17 +9,6 @@ nl.tudelft.dnainator.graph.impl.query
 nl.tudelft.dnainator.graph.interestingness
 nl.tudelft.dnainator.graph.interestingness.impl
 nl.tudelft.dnainator.graph.query
-nl.tudelft.dnainator.javafx
-nl.tudelft.dnainator.javafx.controllers
-nl.tudelft.dnainator.javafx.drawables
-nl.tudelft.dnainator.javafx.drawables.annotations
-nl.tudelft.dnainator.javafx.drawables.phylogeny
-nl.tudelft.dnainator.javafx.drawables.strains
-nl.tudelft.dnainator.javafx.services
-nl.tudelft.dnainator.javafx.views
-nl.tudelft.dnainator.javafx.widgets
-nl.tudelft.dnainator.javafx.widgets.animations
-nl.tudelft.dnainator.javafx.widgets.dialogs
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.exceptions
 nl.tudelft.dnainator.parser.impl
