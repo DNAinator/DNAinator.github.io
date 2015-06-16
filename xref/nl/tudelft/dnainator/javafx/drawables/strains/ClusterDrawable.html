@@ -62,7 +62,7 @@
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> MEDIUM_RADIUS = 5;
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> LARGE_RADIUS = 6;
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> PIETHRESHOLD = 20;
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/core/impl/Cluster.html">Cluster</a> cluster;
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<strong class="jxr_keyword">private</strong> Cluster cluster;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">private</strong> Set&lt;String&gt; sources;
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<strong class="jxr_keyword">private</strong> Text label;
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Pie.html">Pie</a> pie;
@@ -73,7 +73,7 @@
 <a class="jxr_linenumber" name="L65" href="#L65">65</a>  <em class="jxr_javadoccomment">	 * @param colorServer the {@link ColorServer} to bind to.</em>
 <a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 * @param cluster	the {@link Cluster} containing a list of {@link SequenceNode}s.</em>
 <a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/ClusterDrawable.html">ClusterDrawable</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, <a href="../../../../../../nl/tudelft/dnainator/core/impl/Cluster.html">Cluster</a> cluster) {
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/ClusterDrawable.html">ClusterDrawable</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, Cluster cluster) {
 <a class="jxr_linenumber" name="L69" href="#L69">69</a>  		<strong class="jxr_keyword">this</strong>.cluster = cluster;
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">this</strong>.properties = <strong class="jxr_keyword">new</strong> LinkedHashMap&lt;&gt;();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  		<strong class="jxr_keyword">this</strong>.sources = cluster.getNodes().stream()
@@ -164,7 +164,7 @@
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_javadoccomment">	 * @return the {@link Cluster}s in this drawable.</em>
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/core/impl/Cluster.html">Cluster</a> getCluster() {
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> 	<strong class="jxr_keyword">public</strong> Cluster getCluster() {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 		<strong class="jxr_keyword">return</strong> cluster;
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 	}
 <a class="jxr_linenumber" name="L162" href="#L162">162</a> 

@@ -159,7 +159,7 @@
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> <em class="jxr_javadoccomment">	 * Sets the tree, needed for building the graph.</em>
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> <em class="jxr_javadoccomment">	 * @param value the tree.</em>
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L154" href="#L154">154</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTree(<a href="../../../../../nl/tudelft/dnainator/tree/TreeNode.html">TreeNode</a> value) {
+<a class="jxr_linenumber" name="L154" href="#L154">154</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setTree(TreeNode value) {
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> 		phylogeneticTree.setValue(value);
 <a class="jxr_linenumber" name="L156" href="#L156">156</a> 	}
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 
@@ -167,18 +167,18 @@
 <a class="jxr_linenumber" name="L159" href="#L159">159</a> 	<strong class="jxr_keyword">protected</strong> Task&lt;Graph&gt; createTask() {
 <a class="jxr_linenumber" name="L160" href="#L160">160</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Task&lt;Graph&gt;() {
 <a class="jxr_linenumber" name="L161" href="#L161">161</a> 			@Override
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> 			<strong class="jxr_keyword">protected</strong> <a href="../../../../../nl/tudelft/dnainator/graph/Graph.html">Graph</a> call() <strong class="jxr_keyword">throws</strong> IOException, ParseException {
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 			<strong class="jxr_keyword">protected</strong> Graph call() <strong class="jxr_keyword">throws</strong> IOException, ParseException {
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 				AnnotationCollection annotations;
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 				<strong class="jxr_keyword">if</strong> (gffFilePath.getValue() == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionFactoryImpl.html">AnnotationCollectionFactoryImpl</a>().build();
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 					annotations = <strong class="jxr_keyword">new</strong> AnnotationCollectionFactoryImpl().build();
 <a class="jxr_linenumber" name="L166" href="#L166">166</a> 				} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 					AnnotationParser as = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/GFF3AnnotationParser.html">GFF3AnnotationParser</a>(gffFilePath.get());
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionFactoryImpl.html">AnnotationCollectionFactoryImpl</a>().build(as);
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> 					AnnotationParser as = <strong class="jxr_keyword">new</strong> GFF3AnnotationParser(gffFilePath.get());
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> 					annotations = <strong class="jxr_keyword">new</strong> AnnotationCollectionFactoryImpl().build(as);
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 				}
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 				EdgeParser ep = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/EdgeParserImpl.html">EdgeParserImpl</a>(getEdgeFile());
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 				NodeParser np = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/NodeParserImpl.html">NodeParserImpl</a>(getNodeFile());
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 				EdgeParser ep = <strong class="jxr_keyword">new</strong> EdgeParserImpl(getEdgeFile());
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 				NodeParser np = <strong class="jxr_keyword">new</strong> NodeParserImpl(getNodeFile());
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 				<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jBatchBuilder.html">Neo4jBatchBuilder</a>(database.get(), annotations, phylogeneticTree.get())
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 				<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Neo4jBatchBuilder(database.get(), annotations, phylogeneticTree.get())
 <a class="jxr_linenumber" name="L174" href="#L174">174</a> 					.constructGraph(np, ep)
 <a class="jxr_linenumber" name="L175" href="#L175">175</a> 					.build();
 <a class="jxr_linenumber" name="L176" href="#L176">176</a> 			}

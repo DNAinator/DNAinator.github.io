@@ -40,7 +40,7 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> CLUSTER_DIVIDER = 100;
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/Graph.html">Graph</a> graph;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">private</strong> Graph graph;
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<strong class="jxr_keyword">private</strong> Map&lt;String, ClusterDrawable&gt; clusters;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  	<em class="jxr_javadoccomment">/**</em>
@@ -48,7 +48,7 @@
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">	 * @param colorServer The {@link ColorServer} to bind to.</em>
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">	 * @param graph	The specified graph.</em>
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, <a href="../../../../../../nl/tudelft/dnainator/graph/Graph.html">Graph</a> graph) {
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, Graph graph) {
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		<strong class="jxr_keyword">this</strong>(colorServer, graph, <strong class="jxr_keyword">new</strong> Group(), <strong class="jxr_keyword">new</strong> Group());
 <a class="jxr_linenumber" name="L45" href="#L45">45</a>  	}
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  
@@ -60,7 +60,7 @@
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">	 * @param content The specified graph content.</em>
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">	 * @param childContent The specified child content.</em>
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, <a href="../../../../../../nl/tudelft/dnainator/graph/Graph.html">Graph</a> graph, Group content, Group childContent) {
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(<a href="../../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, Graph graph, Group content, Group childContent) {
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  		<strong class="jxr_keyword">super</strong>(content, childContent);
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">this</strong>.colorServer = colorServer;
 <a class="jxr_linenumber" name="L58" href="#L58">58</a>  		<strong class="jxr_keyword">this</strong>.graph = graph;
@@ -96,13 +96,13 @@
 <a class="jxr_linenumber" name="L88" href="#L88">88</a>  		drawAnnotations(annotations);
 <a class="jxr_linenumber" name="L89" href="#L89">89</a>  	}
 <a class="jxr_linenumber" name="L90" href="#L90">90</a>  
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a> getRange(Bounds bounds) {
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<strong class="jxr_keyword">private</strong> Range getRange(Bounds bounds) {
 <a class="jxr_linenumber" name="L92" href="#L92">92</a>  		<strong class="jxr_keyword">int</strong> minRank = (<strong class="jxr_keyword">int</strong>) (Math.max(bounds.getMinX() / RANK_WIDTH, 0));
 <a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<strong class="jxr_keyword">int</strong> maxRank = (<strong class="jxr_keyword">int</strong>) (RANK_WIDTH + bounds.getMaxX() / RANK_WIDTH);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a>(minRank, maxRank);
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> Range(minRank, maxRank);
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  	}
 <a class="jxr_linenumber" name="L96" href="#L96">96</a>  
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	<strong class="jxr_keyword">private</strong> List&lt;Annotation&gt; getSortedAnnotations(<a href="../../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a> ranks) {
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  	<strong class="jxr_keyword">private</strong> List&lt;Annotation&gt; getSortedAnnotations(Range ranks) {
 <a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<strong class="jxr_keyword">return</strong> graph.getAnnotationByRank(ranks).stream()
 <a class="jxr_linenumber" name="L99" href="#L99">99</a>  				.sorted((a1, a2) -&gt; Integer.compare(a1.getStart(), a2.getStart()))
 <a class="jxr_linenumber" name="L100" href="#L100">100</a> 				.collect(Collectors.toList());
@@ -115,7 +115,7 @@
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 		}
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 	}
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Gene.html">Gene</a> loadAnnotations(<a href="../../../../../../nl/tudelft/dnainator/annotation/Annotation.html">Annotation</a> annotation, <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Gene.html">Gene</a> prev) {
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Gene.html">Gene</a> loadAnnotations(Annotation annotation, <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Gene.html">Gene</a> prev) {
 <a class="jxr_linenumber" name="L111" href="#L111">111</a> 		Gene g = <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Gene.html">Gene</a>(annotation);
 <a class="jxr_linenumber" name="L112" href="#L112">112</a> 		ClusterDrawable left = getClusterDrawable(annotation, Double.MAX_VALUE,
 <a class="jxr_linenumber" name="L113" href="#L113">113</a> 				(x, acc) -&gt; x &lt;= acc);
@@ -145,7 +145,7 @@
 <a class="jxr_linenumber" name="L137" href="#L137">137</a> 		<strong class="jxr_keyword">return</strong> g;
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 	}
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 
-<a class="jxr_linenumber" name="L140" href="#L140">140</a> 	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/ClusterDrawable.html">ClusterDrawable</a> getClusterDrawable(<a href="../../../../../../nl/tudelft/dnainator/annotation/Annotation.html">Annotation</a> annotation, <strong class="jxr_keyword">double</strong> startValue,
+<a class="jxr_linenumber" name="L140" href="#L140">140</a> 	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/ClusterDrawable.html">ClusterDrawable</a> getClusterDrawable(Annotation annotation, <strong class="jxr_keyword">double</strong> startValue,
 <a class="jxr_linenumber" name="L141" href="#L141">141</a> 	                                           BiFunction&lt;Double, Double, Boolean&gt; function) {
 <a class="jxr_linenumber" name="L142" href="#L142">142</a> 		Collection&lt;String&gt; ids = annotation.getAnnotatedNodes();
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 		ClusterDrawable res = <strong class="jxr_keyword">null</strong>;
@@ -171,11 +171,11 @@
 <a class="jxr_linenumber" name="L163" href="#L163">163</a> 				.map(destid -&gt; {
 <a class="jxr_linenumber" name="L164" href="#L164">164</a> 					ClusterDrawable dest = clusters.get(destid);
 <a class="jxr_linenumber" name="L165" href="#L165">165</a> 					<strong class="jxr_keyword">if</strong> (dest == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 						Edge e = <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/core/impl/Edge.html">Edge</a>(cluster, destid);
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> 						Edge e = <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Edge.html">Edge</a>(cluster, destid);
 <a class="jxr_linenumber" name="L167" href="#L167">167</a> 						e.getEdge().endYProperty().setValue(bounds.getMinY() + OFFSET);
 <a class="jxr_linenumber" name="L168" href="#L168">168</a> 						<strong class="jxr_keyword">return</strong> e;
 <a class="jxr_linenumber" name="L169" href="#L169">169</a> 					} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 						<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/core/impl/Edge.html">Edge</a>(cluster, dest);
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 						<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Edge.html">Edge</a>(cluster, dest);
 <a class="jxr_linenumber" name="L171" href="#L171">171</a> 					}
 <a class="jxr_linenumber" name="L172" href="#L172">172</a> 				})
 <a class="jxr_linenumber" name="L173" href="#L173">173</a> 				.collect(Collectors.toList()));
