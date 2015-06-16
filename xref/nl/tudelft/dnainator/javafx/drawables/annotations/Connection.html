@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head><meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<title>Connection xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../../stylesheet.css" />
+</head>
+<body>
+<div id="overview"><a href="../../../../../../../apidocs/nl/tudelft/dnainator/javafx/drawables/annotations/Connection.html">View Javadoc</a></div><pre>
+<a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> nl.tudelft.dnainator.javafx.drawables.annotations;
+<a class="jxr_linenumber" name="L2" href="#L2">2</a>   
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> javafx.beans.binding.DoubleBinding;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> javafx.scene.shape.Line;
+<a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.strains.ClusterDrawable;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <em class="jxr_javadoccomment"> * The {@link Connection} is a {@link Line} that connects a {@link Gene} to a</em>
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment"> * {@link ClusterDrawable}.</em>
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Connection.html">Connection</a> <strong class="jxr_keyword">extends</strong> Line {
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <em class="jxr_javadoccomment">	 * Instantiates a new {@link Connection}.</em>
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <em class="jxr_javadoccomment">	 * @param srcX The {@link DoubleBinding} to bind the start x-coordinate to.</em>
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">	 * @param srcY The {@link DoubleBinding} to bind the start y-coordinate to.</em>
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">	 * @param dstX The {@link DoubleBinding} to bind the end x-coordinate to.</em>
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">	 * @param dstY The {@link DoubleBinding} to bind the end y-coordinate to.</em>
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/annotations/Connection.html">Connection</a>(DoubleBinding srcX, DoubleBinding srcY,
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  	                  DoubleBinding dstX, DoubleBinding dstY) {
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  		startXProperty().bind(srcX);
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  		startYProperty().bind(srcY);
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  		endXProperty().bind(dstX);
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  		endYProperty().bind(dstY);
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  	}
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  }
+</pre>
+<hr/>
+<div id="footer">Copyright &#169; 2015. All rights reserved.</div>
+</body>
+</html>
