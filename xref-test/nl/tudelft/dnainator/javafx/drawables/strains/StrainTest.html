@@ -111,7 +111,7 @@
 <a class="jxr_linenumber" name="L103" href="#L103">103</a> 		assertTrue(content.isVisible());
 <a class="jxr_linenumber" name="L104" href="#L104">104</a> 		verify(graph, never()).getRank(anyInt());
 <a class="jxr_linenumber" name="L105" href="#L105">105</a> 
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		strain.update(<strong class="jxr_keyword">new</strong> Rectangle(5000, 2500).getBoundsInLocal(), 1.7);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 		strain.update(<strong class="jxr_keyword">new</strong> Rectangle(5000, 2500).getBoundsInLocal(), 2.0);
 <a class="jxr_linenumber" name="L107" href="#L107">107</a> 		assertFalse(content.isVisible());
 <a class="jxr_linenumber" name="L108" href="#L108">108</a> 		verify(graph, Mockito.atLeastOnce()).getRank(anyInt());
 <a class="jxr_linenumber" name="L109" href="#L109">109</a> 

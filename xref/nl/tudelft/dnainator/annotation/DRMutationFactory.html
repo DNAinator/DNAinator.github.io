@@ -9,7 +9,7 @@
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> nl.tudelft.dnainator.annotation;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.impl.DRMutation;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.DRMutationParser;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Parser;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> java.io.IOException;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   
@@ -25,7 +25,7 @@
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">	 * @param parser The parser that parses the drug resistant mutations file.</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">	 * @return The {@link AnnotationCollection} with the drug resistant mutations added to it.</em>
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../nl/tudelft/dnainator/annotation/AnnotationCollection.html">AnnotationCollection</a> build(<a href="../../../../nl/tudelft/dnainator/annotation/AnnotationCollection.html">AnnotationCollection</a> annotations, <a href="../../../../nl/tudelft/dnainator/parser/DRMutationParser.html">DRMutationParser</a> parser) {
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../nl/tudelft/dnainator/annotation/AnnotationCollection.html">AnnotationCollection</a> build(<a href="../../../../nl/tudelft/dnainator/annotation/AnnotationCollection.html">AnnotationCollection</a> annotations, Parser&lt;DRMutation&gt; parser) {
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  			<strong class="jxr_keyword">while</strong> (parser.hasNext()) {
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  				DRMutation m = parser.next();

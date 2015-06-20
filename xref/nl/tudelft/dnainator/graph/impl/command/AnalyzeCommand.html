@@ -8,95 +8,140 @@
 <div id="overview"><a href="../../../../../../../apidocs/nl/tudelft/dnainator/graph/impl/command/AnalyzeCommand.html">View Javadoc</a></div><pre>
 <a class="jxr_linenumber" name="L1" href="#L1">1</a>   <strong class="jxr_keyword">package</strong> nl.tudelft.dnainator.graph.impl.command;
 <a class="jxr_linenumber" name="L2" href="#L2">2</a>   
-<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.RelTypes;
-<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.interestingness.Scores;
+<a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> java.util.HashMap;
+<a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> java.util.Map;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> org.neo4j.collection.primitive.Primitive;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> org.neo4j.collection.primitive.PrimitiveLongSet;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Direction;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.GraphDatabaseService;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Node;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Relationship;
-<a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.ResourceIterator;
-<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Transaction;
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.traversal.InitialBranchState.State;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.traversal.Uniqueness;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> nl.tudelft.dnainator.graph.impl.properties.SequenceProperties.BASE_DIST;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> nl.tudelft.dnainator.graph.impl.properties.SequenceProperties.RANK;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.neo4j.helpers.collection.IteratorUtil.loop;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <em class="jxr_javadoccomment"> * The {@link AnalyzeCommand} creates a topological ordering and</em>
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <em class="jxr_javadoccomment"> * ranks the nodes in the Neo4j database accordingly.</em>
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/AnalyzeCommand.html">AnalyzeCommand</a> <strong class="jxr_keyword">implements</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/Command.html">Command</a> {
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> INIT_CAP = 4096;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	<strong class="jxr_keyword">private</strong> ResourceIterator&lt;Node&gt; roots;
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">	 * Create a new {@link AnalyzeCommand} that will</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 * start ranking from the specified roots.</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">	 * @param roots	the roots</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/AnalyzeCommand.html">AnalyzeCommand</a>(ResourceIterator&lt;Node&gt; roots) {
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		<strong class="jxr_keyword">this</strong>.roots = roots;
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  	}
-<a class="jxr_linenumber" name="L38" href="#L38">38</a>  
-<a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L40" href="#L40">40</a>  <em class="jxr_javadoccomment">	 * Return a topological ordering on the specified database service.</em>
-<a class="jxr_linenumber" name="L41" href="#L41">41</a>  <em class="jxr_javadoccomment">	 * @param service	the database service</em>
-<a class="jxr_linenumber" name="L42" href="#L42">42</a>  <em class="jxr_javadoccomment">	 * @return		a topological ordering, starting from the roots</em>
-<a class="jxr_linenumber" name="L43" href="#L43">43</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<strong class="jxr_keyword">public</strong> Iterable&lt;Node&gt; topologicalOrder(GraphDatabaseService service) {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		<strong class="jxr_keyword">return</strong> topologicalOrder(service, Primitive.longSet());
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  	}
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<strong class="jxr_keyword">private</strong> Iterable&lt;Node&gt; topologicalOrder(GraphDatabaseService service,
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  						PrimitiveLongSet processed) {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">return</strong> service.traversalDescription()
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  				.depthFirst()
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  				.expand(<strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/TopologicalPathExpander.html">TopologicalPathExpander</a>()
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  				, <strong class="jxr_keyword">new</strong> State&lt;&gt;(processed, <strong class="jxr_keyword">null</strong>))
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  				<em class="jxr_comment">// We manage uniqueness for ourselves.</em>
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  				.uniqueness(Uniqueness.NONE)
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  				.traverse(loop(roots))
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  				.nodes();
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	}
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Override
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> execute(GraphDatabaseService service) {
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		<strong class="jxr_keyword">try</strong> (
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  			Transaction tx = service.beginTx();
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  			<em class="jxr_comment">// Our set is located "off heap", i.e. not managed by the garbage collector.</em>
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  			<em class="jxr_comment">// It is automatically closed after the try block, which frees the allocated memory.</em>
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  			PrimitiveLongSet processed = Primitive.offHeapLongSet(INIT_CAP)
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		) {
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  			<strong class="jxr_keyword">for</strong> (Node n : topologicalOrder(service, processed)) {
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  				rankDest(n);
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  			}
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  			tx.success();
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		}
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	}
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> rankDest(Node n) {
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">int</strong> baseSource = (<strong class="jxr_keyword">int</strong>) n.getProperty(BASE_DIST.name())
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  				+ (<strong class="jxr_keyword">int</strong>) n.getProperty(Scores.SEQ_LENGTH.name());
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">int</strong> rankSource = (<strong class="jxr_keyword">int</strong>) n.getProperty(RANK.name()) + 1;
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		<strong class="jxr_keyword">for</strong> (Relationship r : n.getRelationships(RelTypes.NEXT, Direction.OUTGOING)) {
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  			Node dest = r.getEndNode();
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  			<strong class="jxr_keyword">if</strong> ((<strong class="jxr_keyword">int</strong>) dest.getProperty(BASE_DIST.name()) &lt; baseSource) {
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  				dest.setProperty(BASE_DIST.name(), baseSource);
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  			}
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  			<strong class="jxr_keyword">if</strong> ((<strong class="jxr_keyword">int</strong>) dest.getProperty(RANK.name()) &lt; rankSource) {
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  				dest.setProperty(RANK.name(), rankSource);
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  			}
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  		}
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	}
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  }
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.NodeLabels;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.RelTypes;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.properties.AnnotationProperties;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.properties.SequenceProperties;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.properties.SourceProperties;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.interestingness.Scores;
+<a class="jxr_linenumber" name="L12" href="#L12">12</a>  
+<a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.neo4j.collection.primitive.Primitive;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.neo4j.collection.primitive.PrimitiveLongSet;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Direction;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.GraphDatabaseService;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Node;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Relationship;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.ResourceIterator;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.Transaction;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.traversal.InitialBranchState.State;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.neo4j.graphdb.traversal.Uniqueness;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> nl.tudelft.dnainator.graph.impl.properties.SequenceProperties.BASE_DIST;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> nl.tudelft.dnainator.graph.impl.properties.SequenceProperties.RANK;
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <strong class="jxr_keyword">import</strong> <strong class="jxr_keyword">static</strong> org.neo4j.helpers.collection.IteratorUtil.loop;
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * The {@link AnalyzeCommand} creates a topological ordering and</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * ranks the nodes in the Neo4j database accordingly.</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/AnalyzeCommand.html">AnalyzeCommand</a> <strong class="jxr_keyword">implements</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/Command.html">Command</a> {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> INIT_CAP = 4096;
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String LABEL = <span class="jxr_string">"n"</span>;
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String GET_NODES_BASEDIST =
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  			<span class="jxr_string">"MATCH (n:"</span> + NodeLabels.NODE.name() + <span class="jxr_string">")-[:"</span> + RelTypes.SOURCE.name() + <span class="jxr_string">"]-s, "</span>
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  			+ <span class="jxr_string">"    (t {"</span> + SourceProperties.SOURCE.name() + <span class="jxr_string">": \&quot;TKK_REF\&quot;})"</span>
+<a class="jxr_linenumber" name="L38" href="#L38">38</a>  			+ <span class="jxr_string">"WHERE NOT (n--&gt;t)"</span>
+<a class="jxr_linenumber" name="L39" href="#L39">39</a>  			+ <span class="jxr_string">" AND {dist} &gt;= n."</span> + SequenceProperties.BASE_DIST.name()
+<a class="jxr_linenumber" name="L40" href="#L40">40</a>  			+ <span class="jxr_string">" AND {dist} &lt; n."</span> + SequenceProperties.BASE_DIST.name()
+<a class="jxr_linenumber" name="L41" href="#L41">41</a>  			+ <span class="jxr_string">" + n."</span> + Scores.SEQ_LENGTH.name() + <span class="jxr_string">" RETURN n AS "</span> + LABEL;
+<a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<strong class="jxr_keyword">private</strong> ResourceIterator&lt;Node&gt; roots;
+<a class="jxr_linenumber" name="L43" href="#L43">43</a>  
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">	 * Create a new {@link AnalyzeCommand} that will</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">	 * start ranking from the specified roots.</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">	 * @param roots	the roots</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/AnalyzeCommand.html">AnalyzeCommand</a>(ResourceIterator&lt;Node&gt; roots) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">this</strong>.roots = roots;
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	}
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  <em class="jxr_javadoccomment">	 * Return a topological ordering on the specified database service.</em>
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  <em class="jxr_javadoccomment">	 * @param service	the database service</em>
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  <em class="jxr_javadoccomment">	 * @return		a topological ordering, starting from the roots</em>
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	<strong class="jxr_keyword">public</strong> Iterable&lt;Node&gt; topologicalOrder(GraphDatabaseService service) {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  		<strong class="jxr_keyword">return</strong> topologicalOrder(service, Primitive.longSet());
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	}
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<strong class="jxr_keyword">private</strong> Iterable&lt;Node&gt; topologicalOrder(GraphDatabaseService service,
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  						PrimitiveLongSet processed) {
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">return</strong> service.traversalDescription()
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  				.depthFirst()
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  				.expand(<strong class="jxr_keyword">new</strong> <a href="../../../../../../nl/tudelft/dnainator/graph/impl/command/TopologicalPathExpander.html">TopologicalPathExpander</a>()
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  				, <strong class="jxr_keyword">new</strong> State&lt;&gt;(processed, <strong class="jxr_keyword">null</strong>))
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  				<em class="jxr_comment">// We manage uniqueness for ourselves.</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  				.uniqueness(Uniqueness.NONE)
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  				.traverse(loop(roots))
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  				.nodes();
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	}
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	@Override
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> execute(GraphDatabaseService service) {
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  		<strong class="jxr_keyword">try</strong> (
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  			Transaction tx = service.beginTx();
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  			<em class="jxr_comment">// Our set is located "off heap", i.e. not managed by the garbage collector.</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  			<em class="jxr_comment">// It is automatically closed after the try block, which frees the allocated memory.</em>
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  			PrimitiveLongSet processed = Primitive.offHeapLongSet(INIT_CAP)
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		) {
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  			<strong class="jxr_keyword">for</strong> (Node n : topologicalOrder(service, processed)) {
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  				rankDest(n);
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  			}
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  			scoreDRMutations(service);
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  			tx.success();
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		}
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  	}
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  <em class="jxr_javadoccomment">	 * Rank the destination nodes of the outgoing edges of the given node.</em>
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  <em class="jxr_javadoccomment">	 * @param n the source node of the destination nodes to be ranked.</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> rankDest(Node n) {
+<a class="jxr_linenumber" name="L95" href="#L95">95</a>  		<strong class="jxr_keyword">int</strong> baseSource = (<strong class="jxr_keyword">int</strong>) n.getProperty(BASE_DIST.name())
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  				+ (<strong class="jxr_keyword">int</strong>) n.getProperty(Scores.SEQ_LENGTH.name());
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		<strong class="jxr_keyword">int</strong> rankSource = (<strong class="jxr_keyword">int</strong>) n.getProperty(RANK.name()) + 1;
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		<strong class="jxr_keyword">for</strong> (Relationship r : n.getRelationships(RelTypes.NEXT, Direction.OUTGOING)) {
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 			Node dest = r.getEndNode();
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 			<strong class="jxr_keyword">if</strong> ((<strong class="jxr_keyword">int</strong>) dest.getProperty(BASE_DIST.name()) &lt; baseSource) {
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 				dest.setProperty(BASE_DIST.name(), baseSource);
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 			}
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 			<strong class="jxr_keyword">if</strong> ((<strong class="jxr_keyword">int</strong>) dest.getProperty(RANK.name()) &lt; rankSource) {
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 				dest.setProperty(RANK.name(), rankSource);
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 			}
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		}
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 	}
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">	 * Scores the amount of drug resistance mutations.</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">	 * @param service	the graph service</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> scoreDRMutations(GraphDatabaseService service) {
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> 		Map&lt;String, Object&gt; params = <strong class="jxr_keyword">new</strong> HashMap&lt;&gt;(1);
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 		service.findNodes(NodeLabels.DRMUTATION).forEachRemaining(drannotations -&gt;
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 			drannotations.getRelationships(RelTypes.ANNOTATED).forEach(node -&gt; {
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 				<em class="jxr_comment">// From the startref of the annotation</em>
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 				<em class="jxr_comment">// subtract the startref of the annotated node</em>
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 				<em class="jxr_comment">// and add the base distance of the annotated node</em>
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> 				<strong class="jxr_keyword">int</strong> basedist = (<strong class="jxr_keyword">int</strong>) drannotations.getProperty(AnnotationProperties.STARTREF.name())
+<a class="jxr_linenumber" name="L123" href="#L123">123</a> 					- (<strong class="jxr_keyword">int</strong>) node.getStartNode().getProperty(SequenceProperties.STARTREF.name())
+<a class="jxr_linenumber" name="L124" href="#L124">124</a> 					+ (<strong class="jxr_keyword">int</strong>) node.getStartNode().getProperty(SequenceProperties.BASE_DIST.name());
+<a class="jxr_linenumber" name="L125" href="#L125">125</a> 
+<a class="jxr_linenumber" name="L126" href="#L126">126</a> 				params.put(<span class="jxr_string">"dist"</span>, basedist);
+<a class="jxr_linenumber" name="L127" href="#L127">127</a> 				ResourceIterator&lt;Node&gt; mutations = service.execute(GET_NODES_BASEDIST, params)
+<a class="jxr_linenumber" name="L128" href="#L128">128</a> 									.columnAs(LABEL);
+<a class="jxr_linenumber" name="L129" href="#L129">129</a> 				mutations.forEachRemaining(m -&gt; {
+<a class="jxr_linenumber" name="L130" href="#L130">130</a> 					<strong class="jxr_keyword">int</strong> score = (<strong class="jxr_keyword">int</strong>) m.getProperty(Scores.DR_MUT.name(), 0);
+<a class="jxr_linenumber" name="L131" href="#L131">131</a> 					m.setProperty(Scores.DR_MUT.name(), score + 1);
+<a class="jxr_linenumber" name="L132" href="#L132">132</a> 				});
+<a class="jxr_linenumber" name="L133" href="#L133">133</a> 			})
+<a class="jxr_linenumber" name="L134" href="#L134">134</a> 		);
+<a class="jxr_linenumber" name="L135" href="#L135">135</a> 	}
+<a class="jxr_linenumber" name="L136" href="#L136">136</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>
