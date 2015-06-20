@@ -1,5 +1,7 @@
+nl.tudelft.dnainator.annotation
 nl.tudelft.dnainator.annotation.impl
 nl.tudelft.dnainator.graph.impl
+nl.tudelft.dnainator.graph.interestingness.impl
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.buffered
 nl.tudelft.dnainator.parser.impl
