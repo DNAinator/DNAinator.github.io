@@ -11,7 +11,7 @@
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.Annotation;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.AnnotationCollection;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.Range;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Parser;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Iterator;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> java.util.Collection;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> java.util.LinkedList;
@@ -37,11 +37,11 @@
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">	 * Construct an AnnotationCollection, which will be filled using the given source.</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">	 * This is equivalent to first constructing an empty AnnotationCollection, and then</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">	 * using addAnnotations.</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 * @param parser The source for getting the annotations.</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 * @param source The source for getting the annotations.</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionImpl.html">AnnotationCollectionImpl</a>(Parser&lt;Annotation&gt; parser) {
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionImpl.html">AnnotationCollectionImpl</a>(Iterator&lt;Annotation&gt; source) {
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  		<strong class="jxr_keyword">this</strong>();
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		addAnnotations(parser);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		addAnnotations(source);
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  	}
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	@Override

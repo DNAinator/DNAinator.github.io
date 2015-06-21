@@ -15,18 +15,18 @@
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.Annotation;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.AnnotationCollection;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.DRMutationFactory;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.impl.AnnotationCollectionFactoryImpl;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.impl.AnnotationCollectionImpl;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.SequenceNode;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.impl.Edge;
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.Neo4jBatchBuilder;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Parser;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Iterator;
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.TreeParser;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.exceptions.ParseException;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.DRMutationParserImpl;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.EdgeParserImpl;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.GFF3AnnotationParser;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.NodeParserImpl;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.DRMutationIterator;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.EdgeIterator;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.AnnotationIterator;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.NodeIterator;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.tree.TreeNode;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> java.io.File;
@@ -209,15 +209,15 @@
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 			<strong class="jxr_keyword">protected</strong> <a href="../../../../../nl/tudelft/dnainator/graph/Graph.html">Graph</a> call() <strong class="jxr_keyword">throws</strong> IOException, ParseException {
 <a class="jxr_linenumber" name="L202" href="#L202">202</a> 				AnnotationCollection annotations;
 <a class="jxr_linenumber" name="L203" href="#L203">203</a> 				<strong class="jxr_keyword">if</strong> (gffFilePath.getValue() == <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionFactoryImpl.html">AnnotationCollectionFactoryImpl</a>().build();
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionImpl.html">AnnotationCollectionImpl</a>();
 <a class="jxr_linenumber" name="L205" href="#L205">205</a> 				} <strong class="jxr_keyword">else</strong> {
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> 					Parser&lt;Annotation&gt; as = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/GFF3AnnotationParser.html">GFF3AnnotationParser</a>(gffFilePath.get());
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionFactoryImpl.html">AnnotationCollectionFactoryImpl</a>().build(as);
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> 					Iterator&lt;Annotation&gt; as = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/AnnotationIterator.html">AnnotationIterator</a>(gffFilePath.get());
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/impl/AnnotationCollectionImpl.html">AnnotationCollectionImpl</a>(as);
 <a class="jxr_linenumber" name="L208" href="#L208">208</a> 				}
 <a class="jxr_linenumber" name="L209" href="#L209">209</a> 
 <a class="jxr_linenumber" name="L210" href="#L210">210</a> 				<strong class="jxr_keyword">if</strong> (drFile.getValue() != <strong class="jxr_keyword">null</strong>) {
 <a class="jxr_linenumber" name="L211" href="#L211">211</a> 					annotations = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/DRMutationFactory.html">DRMutationFactory</a>().build(annotations,
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> 							<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/DRMutationParserImpl.html">DRMutationParserImpl</a>(drFile.get()));
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 							<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/DRMutationIterator.html">DRMutationIterator</a>(drFile.get()));
 <a class="jxr_linenumber" name="L213" href="#L213">213</a> 				}
 <a class="jxr_linenumber" name="L214" href="#L214">214</a> 
 <a class="jxr_linenumber" name="L215" href="#L215">215</a> 				TreeNode node = <strong class="jxr_keyword">null</strong>;
@@ -225,8 +225,8 @@
 <a class="jxr_linenumber" name="L217" href="#L217">217</a> 					node = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/TreeParser.html">TreeParser</a>(getNewickFile()).parse();
 <a class="jxr_linenumber" name="L218" href="#L218">218</a> 				}
 <a class="jxr_linenumber" name="L219" href="#L219">219</a> 
-<a class="jxr_linenumber" name="L220" href="#L220">220</a> 				Parser&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/EdgeParserImpl.html">EdgeParserImpl</a>(getEdgeFile());
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> 				Parser&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/NodeParserImpl.html">NodeParserImpl</a>(getNodeFile());
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 				Iterator&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/EdgeIterator.html">EdgeIterator</a>(getEdgeFile());
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 				Iterator&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/parser/impl/NodeIterator.html">NodeIterator</a>(getNodeFile());
 <a class="jxr_linenumber" name="L222" href="#L222">222</a> 
 <a class="jxr_linenumber" name="L223" href="#L223">223</a> 				<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jBatchBuilder.html">Neo4jBatchBuilder</a>(database.get(), annotations, node)
 <a class="jxr_linenumber" name="L224" href="#L224">224</a> 					.constructGraph(np, ep).build();

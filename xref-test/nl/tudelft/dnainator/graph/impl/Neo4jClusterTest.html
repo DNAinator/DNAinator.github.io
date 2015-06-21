@@ -14,9 +14,9 @@
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.impl.Edge;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.impl.SequenceNodeFactoryImpl;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.interestingness.Scores;
-<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Parser;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.EdgeParserImpl;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.NodeParserImpl;
+<a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.Iterator;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.EdgeIterator;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.parser.impl.NodeIterator;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.junit.AfterClass;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> org.junit.BeforeClass;
@@ -57,9 +57,9 @@
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  			edgeFile = Neo4jGraphTest.<strong class="jxr_keyword">class</strong>.getResourceAsStream(<span class="jxr_string">"/strains/cluster.edge.graph"</span>);
 <a class="jxr_linenumber" name="L50" href="#L50">50</a>  <em class="jxr_comment">//			nodeFile = new File("10_strains_graph/simple_graph.node.graph");</em>
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_comment">//			edgeFile = new File("10_strains_graph/simple_graph.edge.graph");</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  			Parser&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> NodeParserImpl(<strong class="jxr_keyword">new</strong> SequenceNodeFactoryImpl(),
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  			Iterator&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> NodeIterator(<strong class="jxr_keyword">new</strong> SequenceNodeFactoryImpl(),
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  					<strong class="jxr_keyword">new</strong> BufferedReader(<strong class="jxr_keyword">new</strong> InputStreamReader(nodeFile, <span class="jxr_string">"UTF-8"</span>)));
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			Parser&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeParserImpl(<strong class="jxr_keyword">new</strong> BufferedReader(
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			Iterator&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  							<strong class="jxr_keyword">new</strong> InputStreamReader(edgeFile, <span class="jxr_string">"UTF-8"</span>)));
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  			db = (Neo4jGraph) <strong class="jxr_keyword">new</strong> Neo4jBatchBuilder(DB_PATH, <strong class="jxr_keyword">new</strong> AnnotationCollectionImpl())
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  				.constructGraph(np, ep)
