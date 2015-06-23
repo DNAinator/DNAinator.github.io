@@ -40,7 +40,7 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  	}
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">	 * Updates the displayed information.</em>
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  <em class="jxr_javadoccomment">	 * Updates the property pane with the information of a {@link Propertyable}.</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">	 * @param p The new {@link Propertyable} whose information to display.</em>
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> update(<a href="../../../../../nl/tudelft/dnainator/javafx/widgets/Propertyable.html">Propertyable</a> p) {
@@ -49,37 +49,45 @@
 <a class="jxr_linenumber" name="L41" href="#L41">41</a>  		p.getPropertyMap().forEach((k, v) -&gt; addLabel(k, v));
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  	}
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  
-<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addLabel(<a href="../../../../../nl/tudelft/dnainator/core/PropertyType.html">PropertyType</a> type, String value) {
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		Label description = <strong class="jxr_keyword">new</strong> Label(type.description());
-<a class="jxr_linenumber" name="L46" href="#L46">46</a>  		description.getStyleClass().add(<span class="jxr_string">"property-header"</span>);
-<a class="jxr_linenumber" name="L47" href="#L47">47</a>  
-<a class="jxr_linenumber" name="L48" href="#L48">48</a>  		Node label = <strong class="jxr_keyword">new</strong> Label(value);
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  		label.getStyleClass().add(<span class="jxr_string">"property-info"</span>);
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		<strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong> &amp;&amp; value.length() &gt; MAX_PROPERTY_SIZE) {
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  			ScrollPane sp = <strong class="jxr_keyword">new</strong> ScrollPane(label);
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  			sp.setFitToWidth(<strong class="jxr_keyword">true</strong>);
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  			sp.setPrefHeight(WIDTH / 2);
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			label = sp;
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  		}
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		propertyPane.getChildren().add(<strong class="jxr_keyword">new</strong> VBox(description, label));
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	}
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">	 * Toggle the sliding animation on the property pane.</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggle() {
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		animation.toggle();
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	}
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 * Opens the {@link PropertyPane} when a drawable is clicked and it was not open.</em>
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onClickOpenPane() {
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		<strong class="jxr_keyword">if</strong> (!propertyPane.isVisible()) {
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  			toggle();
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		}
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	}
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  }
+<a class="jxr_linenumber" name="L44" href="#L44">44</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  <em class="jxr_javadoccomment">	 * Adds a label to the property pane, with the title specified in the {@link PropertyType}.</em>
+<a class="jxr_linenumber" name="L46" href="#L46">46</a>  <em class="jxr_javadoccomment">	 * @param type	the {@link PropertyType}</em>
+<a class="jxr_linenumber" name="L47" href="#L47">47</a>  <em class="jxr_javadoccomment">	 * @param value	the value of the property</em>
+<a class="jxr_linenumber" name="L48" href="#L48">48</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> addLabel(<a href="../../../../../nl/tudelft/dnainator/core/PropertyType.html">PropertyType</a> type, String value) {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		Label description = <strong class="jxr_keyword">new</strong> Label(type.description());
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		description.getStyleClass().add(<span class="jxr_string">"property-header"</span>);
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  		<em class="jxr_comment">// Create a label and add a style class.</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  		Node label = <strong class="jxr_keyword">new</strong> Label(value);
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  		label.getStyleClass().add(<span class="jxr_string">"property-info"</span>);
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<em class="jxr_comment">// Wrap the label in a scroll pane if needed.</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  		<strong class="jxr_keyword">if</strong> (value != <strong class="jxr_keyword">null</strong> &amp;&amp; value.length() &gt; MAX_PROPERTY_SIZE) {
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  			ScrollPane sp = <strong class="jxr_keyword">new</strong> ScrollPane(label);
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  			sp.setFitToWidth(<strong class="jxr_keyword">true</strong>);
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  			sp.setPrefHeight(WIDTH / 2);
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  			label = sp;
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  		}
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		propertyPane.getChildren().add(<strong class="jxr_keyword">new</strong> VBox(description, label));
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	}
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  <em class="jxr_javadoccomment">	 * Toggle the sliding animation on the property pane.</em>
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggle() {
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		animation.toggle();
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  	}
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  <em class="jxr_javadoccomment">	 * Opens the {@link PropertyPane} when a drawable is clicked and it was not open.</em>
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onClickOpenPane() {
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  		<strong class="jxr_keyword">if</strong> (!propertyPane.isVisible()) {
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  			toggle();
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  		}
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  	}
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>

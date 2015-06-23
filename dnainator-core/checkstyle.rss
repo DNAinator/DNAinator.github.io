@@ -25,7 +25,7 @@ under the License.
     <language>en-us</language>
     <copyright>&#169;2015</copyright>
     <item>
-      <title>File: 76,
+      <title>File: 74,
              Errors: 0,
              Warnings: 0,
              Infos: 0
@@ -578,20 +578,6 @@ under the License.
               </tr>
                           <tr>
                 <td>
-                  <a href="https://github.com/DNAinator/dnainator/dnainator-core/checkstyle.html#nl.tudelft.dnainator.annotation.DRMutationFactory.java">nl/tudelft/dnainator/annotation/DRMutationFactory.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
                   <a href="https://github.com/DNAinator/dnainator/dnainator-core/checkstyle.html#nl.tudelft.dnainator.graph.impl.properties.PhylogenyProperties.java">nl/tudelft/dnainator/graph/impl/properties/PhylogenyProperties.java</a>
                 </td>
                 <td>
@@ -985,20 +971,6 @@ under the License.
                           <tr>
                 <td>
                   <a href="https://github.com/DNAinator/dnainator/dnainator-core/checkstyle.html#nl.tudelft.dnainator.annotation.RangeTest.java">nl/tudelft/dnainator/annotation/RangeTest.java</a>
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-                <td>
-                  0
-                </td>
-              </tr>
-                          <tr>
-                <td>
-                  <a href="https://github.com/DNAinator/dnainator/dnainator-core/checkstyle.html#nl.tudelft.dnainator.annotation.DRMutationFactoryTest.java">nl/tudelft/dnainator/annotation/DRMutationFactoryTest.java</a>
                 </td>
                 <td>
                   0

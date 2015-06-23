@@ -59,7 +59,7 @@
 <a class="jxr_linenumber" name="L51" href="#L51">51</a>  <em class="jxr_comment">//			edgeFile = new File("10_strains_graph/simple_graph.edge.graph");</em>
 <a class="jxr_linenumber" name="L52" href="#L52">52</a>  			Iterator&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> NodeIterator(<strong class="jxr_keyword">new</strong> SequenceNodeFactoryImpl(),
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  					<strong class="jxr_keyword">new</strong> BufferedReader(<strong class="jxr_keyword">new</strong> InputStreamReader(nodeFile, <span class="jxr_string">"UTF-8"</span>)));
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			Iterator&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  			Iterator&lt;Edge&lt;?&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  							<strong class="jxr_keyword">new</strong> InputStreamReader(edgeFile, <span class="jxr_string">"UTF-8"</span>)));
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  			db = (Neo4jGraph) <strong class="jxr_keyword">new</strong> Neo4jBatchBuilder(DB_PATH, <strong class="jxr_keyword">new</strong> AnnotationCollectionImpl())
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  				.constructGraph(np, ep)

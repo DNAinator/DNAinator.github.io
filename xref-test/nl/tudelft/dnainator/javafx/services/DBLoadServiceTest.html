@@ -19,29 +19,29 @@
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.TimeUnit;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  <strong class="jxr_keyword">import</strong> java.util.concurrent.TimeoutException;
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  
-<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
-<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.Neo4jGraph;
-<a class="jxr_linenumber" name="L16" href="#L16">16</a>  
-<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> org.junit.Before;
-<a class="jxr_linenumber" name="L18" href="#L18">18</a>  <strong class="jxr_keyword">import</strong> org.junit.BeforeClass;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
-<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.junit.runner.RunWith;
-<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.neo4j.io.fs.FileUtils;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  
-<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> de.saxsys.javafx.test.JfxRunner;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  
-<a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment"> * Test class for the {@link DBLoadService}.</em>
-<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * See <a href="http://blog.buildpath.de/how-to-test-javafx-services/" target="alexandria_uri">http://blog.buildpath.de/how-to-test-javafx-services/</a> for</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * an explanation on how to test JavaFX code.</em>
-<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * &lt;/p&gt;</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> */</em>
-<a class="jxr_linenumber" name="L32" href="#L32">32</a>  @RunWith(JfxRunner.<strong class="jxr_keyword">class</strong>)
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/services/DBLoadServiceTest.html">DBLoadServiceTest</a> {
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  	<strong class="jxr_keyword">private</strong> DBLoadService loadService;
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> DELAY = 20000;
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DEFAULT_DB_PATH = <span class="jxr_string">"target"</span> + File.separator + <span class="jxr_string">"db"</span>;
+<a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> javafx.stage.Stage;
+<a class="jxr_linenumber" name="L15" href="#L15">15</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
+<a class="jxr_linenumber" name="L16" href="#L16">16</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.impl.Neo4jGraph;
+<a class="jxr_linenumber" name="L17" href="#L17">17</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.DNAinator;
+<a class="jxr_linenumber" name="L18" href="#L18">18</a>  
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  <strong class="jxr_keyword">import</strong> org.junit.Before;
+<a class="jxr_linenumber" name="L20" href="#L20">20</a>  <strong class="jxr_keyword">import</strong> org.junit.BeforeClass;
+<a class="jxr_linenumber" name="L21" href="#L21">21</a>  <strong class="jxr_keyword">import</strong> org.junit.Test;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  <strong class="jxr_keyword">import</strong> org.neo4j.io.fs.FileUtils;
+<a class="jxr_linenumber" name="L23" href="#L23">23</a>  <strong class="jxr_keyword">import</strong> org.testfx.api.FxToolkit;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  <strong class="jxr_keyword">import</strong> org.testfx.framework.junit.ApplicationTest;
+<a class="jxr_linenumber" name="L25" href="#L25">25</a>  
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  
+<a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment"> * Test class for the {@link DBLoadService}.</em>
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment"> * &lt;p&gt;</em>
+<a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment"> * See <a href="http://blog.buildpath.de/how-to-test-javafx-services/" target="alexandria_uri">http://blog.buildpath.de/how-to-test-javafx-services/</a> for</em>
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment"> * an explanation on how to test JavaFX code.</em>
+<a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment"> * &lt;/p&gt;</em>
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment"> */</em>
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  <strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">class</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/services/DBLoadServiceTest.html">DBLoadServiceTest</a> <strong class="jxr_keyword">extends</strong> ApplicationTest {
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">private</strong> DBLoadService loadService;
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> DELAY = 20000;
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> String DB_PATH = <span class="jxr_string">"target/neo4j-junit-dbload"</span>;
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  	
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	<em class="jxr_javadoccomment">/**</em>
@@ -55,74 +55,79 @@
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  			e.printStackTrace();
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  		}
 <a class="jxr_linenumber" name="L49" href="#L49">49</a>  	}
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  	
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  <em class="jxr_javadoccomment">	 * Creates new database service.</em>
-<a class="jxr_linenumber" name="L53" href="#L53">53</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L54" href="#L54">54</a>  	@Before
-<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setup() {
-<a class="jxr_linenumber" name="L56" href="#L56">56</a>  		loadService = <strong class="jxr_keyword">new</strong> DBLoadService();
-<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	}
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  	
-<a class="jxr_linenumber" name="L59" href="#L59">59</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L60" href="#L60">60</a>  <em class="jxr_javadoccomment">	 * Test the default database path and changing the path.</em>
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L62" href="#L62">62</a>  	@Test
-<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testDBPath() {
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		assertEquals(loadService.getDatabase(), DEFAULT_DB_PATH);
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  		
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  		loadService.setDatabase(<span class="jxr_string">"other path"</span>);
-<a class="jxr_linenumber" name="L67" href="#L67">67</a>  		assertEquals(loadService.getDatabase(), <span class="jxr_string">"other path"</span>);
-<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	}
-<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	
-<a class="jxr_linenumber" name="L70" href="#L70">70</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L71" href="#L71">71</a>  <em class="jxr_javadoccomment">	 * Test the database property.</em>
-<a class="jxr_linenumber" name="L72" href="#L72">72</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  	@Test
-<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testDatabaseProperty() {
-<a class="jxr_linenumber" name="L75" href="#L75">75</a>  		assertNotNull(loadService.databaseProperty());
-<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	}
-<a class="jxr_linenumber" name="L77" href="#L77">77</a>  	
-<a class="jxr_linenumber" name="L78" href="#L78">78</a>  	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L79" href="#L79">79</a>  <em class="jxr_javadoccomment">	 * Performs the actual test, in that it initializes the CompletableFuture,</em>
-<a class="jxr_linenumber" name="L80" href="#L80">80</a>  <em class="jxr_javadoccomment">	 * attaches the listeners and does the assertions.</em>
-<a class="jxr_linenumber" name="L81" href="#L81">81</a>  <em class="jxr_javadoccomment">	 * @throws InterruptedException when the completablefuture was interrupted</em>
-<a class="jxr_linenumber" name="L82" href="#L82">82</a>  <em class="jxr_javadoccomment">	 * @throws ExecutionException when an error occurs in loading</em>
-<a class="jxr_linenumber" name="L83" href="#L83">83</a>  <em class="jxr_javadoccomment">	 * @throws TimeoutException  when the completablefuture does not complete</em>
-<a class="jxr_linenumber" name="L84" href="#L84">84</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L85" href="#L85">85</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doTest() <strong class="jxr_keyword">throws</strong> InterruptedException, ExecutionException, TimeoutException {
-<a class="jxr_linenumber" name="L86" href="#L86">86</a>  		<em class="jxr_comment">// Create a completableFuture to test the background task of the service. This</em>
-<a class="jxr_linenumber" name="L87" href="#L87">87</a>  		<em class="jxr_comment">// completableFuture blocks the test thread until its complete method was called.</em>
-<a class="jxr_linenumber" name="L88" href="#L88">88</a>  		CompletableFuture&lt;Graph&gt; completableFuture = <strong class="jxr_keyword">new</strong> CompletableFuture&lt;&gt;();
-<a class="jxr_linenumber" name="L89" href="#L89">89</a>  
-<a class="jxr_linenumber" name="L90" href="#L90">90</a>  		<em class="jxr_comment">// Act on the loadService's interesting states.</em>
-<a class="jxr_linenumber" name="L91" href="#L91">91</a>  		registerListeners(loadService, completableFuture);
-<a class="jxr_linenumber" name="L92" href="#L92">92</a>  
-<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		loadService.setDatabase(DB_PATH);
-<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		loadService.start();
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  	@Override
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> start(Stage arg0) <strong class="jxr_keyword">throws</strong> Exception {
+<a class="jxr_linenumber" name="L53" href="#L53">53</a>  		<em class="jxr_comment">// Prevent exceptions from showing during service testing.</em>
+<a class="jxr_linenumber" name="L54" href="#L54">54</a>  		FxToolkit.cleanupStages();
+<a class="jxr_linenumber" name="L55" href="#L55">55</a>  	}
+<a class="jxr_linenumber" name="L56" href="#L56">56</a>  	
+<a class="jxr_linenumber" name="L57" href="#L57">57</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  <em class="jxr_javadoccomment">	 * Creates new database service.</em>
+<a class="jxr_linenumber" name="L59" href="#L59">59</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L60" href="#L60">60</a>  	@Before
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setup() {
+<a class="jxr_linenumber" name="L62" href="#L62">62</a>  		loadService = <strong class="jxr_keyword">new</strong> DBLoadService();
+<a class="jxr_linenumber" name="L63" href="#L63">63</a>  	}
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L66" href="#L66">66</a>  <em class="jxr_javadoccomment">	 * Test the default database path and changing the path.</em>
+<a class="jxr_linenumber" name="L67" href="#L67">67</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L68" href="#L68">68</a>  	@Test
+<a class="jxr_linenumber" name="L69" href="#L69">69</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testDBPath() {
+<a class="jxr_linenumber" name="L70" href="#L70">70</a>  		assertEquals(loadService.getDatabase(), DNAinator.DEFAULT_DB_PATH);
+<a class="jxr_linenumber" name="L71" href="#L71">71</a>  		
+<a class="jxr_linenumber" name="L72" href="#L72">72</a>  		loadService.setDatabase(<span class="jxr_string">"other path"</span>);
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  		assertEquals(loadService.getDatabase(), <span class="jxr_string">"other path"</span>);
+<a class="jxr_linenumber" name="L74" href="#L74">74</a>  	}
+<a class="jxr_linenumber" name="L75" href="#L75">75</a>  	
+<a class="jxr_linenumber" name="L76" href="#L76">76</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L77" href="#L77">77</a>  <em class="jxr_javadoccomment">	 * Test the database property.</em>
+<a class="jxr_linenumber" name="L78" href="#L78">78</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L79" href="#L79">79</a>  	@Test
+<a class="jxr_linenumber" name="L80" href="#L80">80</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testDatabaseProperty() {
+<a class="jxr_linenumber" name="L81" href="#L81">81</a>  		assertNotNull(loadService.databaseProperty());
+<a class="jxr_linenumber" name="L82" href="#L82">82</a>  	}
+<a class="jxr_linenumber" name="L83" href="#L83">83</a>  	
+<a class="jxr_linenumber" name="L84" href="#L84">84</a>  	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L85" href="#L85">85</a>  <em class="jxr_javadoccomment">	 * Performs the actual test, in that it initializes the CompletableFuture,</em>
+<a class="jxr_linenumber" name="L86" href="#L86">86</a>  <em class="jxr_javadoccomment">	 * attaches the listeners and does the assertions.</em>
+<a class="jxr_linenumber" name="L87" href="#L87">87</a>  <em class="jxr_javadoccomment">	 * @throws InterruptedException when the completablefuture was interrupted</em>
+<a class="jxr_linenumber" name="L88" href="#L88">88</a>  <em class="jxr_javadoccomment">	 * @throws ExecutionException when an error occurs in loading</em>
+<a class="jxr_linenumber" name="L89" href="#L89">89</a>  <em class="jxr_javadoccomment">	 * @throws TimeoutException  when the completablefuture does not complete</em>
+<a class="jxr_linenumber" name="L90" href="#L90">90</a>  <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L91" href="#L91">91</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> doTest() <strong class="jxr_keyword">throws</strong> InterruptedException, ExecutionException, TimeoutException {
+<a class="jxr_linenumber" name="L92" href="#L92">92</a>  		<em class="jxr_comment">// Create a completableFuture to test the background task of the service. This</em>
+<a class="jxr_linenumber" name="L93" href="#L93">93</a>  		<em class="jxr_comment">// completableFuture blocks the test thread until its complete method was called.</em>
+<a class="jxr_linenumber" name="L94" href="#L94">94</a>  		CompletableFuture&lt;Graph&gt; completableFuture = <strong class="jxr_keyword">new</strong> CompletableFuture&lt;&gt;();
 <a class="jxr_linenumber" name="L95" href="#L95">95</a>  
-<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<em class="jxr_comment">// This call blocks the test thread until the completableFuture's complete() method is</em>
-<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		<em class="jxr_comment">// called. Calling get() retrieves the result (e.g., the Graph in this case). Set a</em>
-<a class="jxr_linenumber" name="L98" href="#L98">98</a>  		<em class="jxr_comment">// timeout in case the result does not appear.</em>
-<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		Graph graph = completableFuture.get(DELAY, TimeUnit.MILLISECONDS);
-<a class="jxr_linenumber" name="L100" href="#L100">100</a> 
-<a class="jxr_linenumber" name="L101" href="#L101">101</a> 		assertNotNull(graph);
-<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		((Neo4jGraph) graph).shutdown();
-<a class="jxr_linenumber" name="L103" href="#L103">103</a> 	}
-<a class="jxr_linenumber" name="L104" href="#L104">104</a> 	
-<a class="jxr_linenumber" name="L105" href="#L105">105</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L106" href="#L106">106</a> <em class="jxr_javadoccomment">	 * Tests loading a database properly.</em>
-<a class="jxr_linenumber" name="L107" href="#L107">107</a> <em class="jxr_javadoccomment">	 * @throws InterruptedException when the completablefuture was interrupted</em>
-<a class="jxr_linenumber" name="L108" href="#L108">108</a> <em class="jxr_javadoccomment">	 * @throws ExecutionException when an error occurs in loading</em>
-<a class="jxr_linenumber" name="L109" href="#L109">109</a> <em class="jxr_javadoccomment">	 * @throws TimeoutException  when the completablefuture does not complete</em>
-<a class="jxr_linenumber" name="L110" href="#L110">110</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	@Test
-<a class="jxr_linenumber" name="L112" href="#L112">112</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testProperDatabase() <strong class="jxr_keyword">throws</strong> InterruptedException, 
-<a class="jxr_linenumber" name="L113" href="#L113">113</a> 		ExecutionException, TimeoutException {
-<a class="jxr_linenumber" name="L114" href="#L114">114</a> 		doTest();
-<a class="jxr_linenumber" name="L115" href="#L115">115</a> 	}
-<a class="jxr_linenumber" name="L116" href="#L116">116</a> 
-<a class="jxr_linenumber" name="L117" href="#L117">117</a> }
+<a class="jxr_linenumber" name="L96" href="#L96">96</a>  		<em class="jxr_comment">// Act on the loadService's interesting states.</em>
+<a class="jxr_linenumber" name="L97" href="#L97">97</a>  		registerListeners(loadService, completableFuture);
+<a class="jxr_linenumber" name="L98" href="#L98">98</a>  
+<a class="jxr_linenumber" name="L99" href="#L99">99</a>  		loadService.setDatabase(DB_PATH);
+<a class="jxr_linenumber" name="L100" href="#L100">100</a> 		loadService.start();
+<a class="jxr_linenumber" name="L101" href="#L101">101</a> 
+<a class="jxr_linenumber" name="L102" href="#L102">102</a> 		<em class="jxr_comment">// This call blocks the test thread until the completableFuture's complete() method is</em>
+<a class="jxr_linenumber" name="L103" href="#L103">103</a> 		<em class="jxr_comment">// called. Calling get() retrieves the result (e.g., the Graph in this case). Set a</em>
+<a class="jxr_linenumber" name="L104" href="#L104">104</a> 		<em class="jxr_comment">// timeout in case the result does not appear.</em>
+<a class="jxr_linenumber" name="L105" href="#L105">105</a> 		Graph graph = completableFuture.get(DELAY, TimeUnit.MILLISECONDS);
+<a class="jxr_linenumber" name="L106" href="#L106">106</a> 
+<a class="jxr_linenumber" name="L107" href="#L107">107</a> 		assertNotNull(graph);
+<a class="jxr_linenumber" name="L108" href="#L108">108</a> 		((Neo4jGraph) graph).shutdown();
+<a class="jxr_linenumber" name="L109" href="#L109">109</a> 	}
+<a class="jxr_linenumber" name="L110" href="#L110">110</a> 	
+<a class="jxr_linenumber" name="L111" href="#L111">111</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L112" href="#L112">112</a> <em class="jxr_javadoccomment">	 * Tests loading a database properly.</em>
+<a class="jxr_linenumber" name="L113" href="#L113">113</a> <em class="jxr_javadoccomment">	 * @throws InterruptedException when the completablefuture was interrupted</em>
+<a class="jxr_linenumber" name="L114" href="#L114">114</a> <em class="jxr_javadoccomment">	 * @throws ExecutionException when an error occurs in loading</em>
+<a class="jxr_linenumber" name="L115" href="#L115">115</a> <em class="jxr_javadoccomment">	 * @throws TimeoutException  when the completablefuture does not complete</em>
+<a class="jxr_linenumber" name="L116" href="#L116">116</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L117" href="#L117">117</a> 	@Test
+<a class="jxr_linenumber" name="L118" href="#L118">118</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testProperDatabase() <strong class="jxr_keyword">throws</strong> InterruptedException, 
+<a class="jxr_linenumber" name="L119" href="#L119">119</a> 		ExecutionException, TimeoutException {
+<a class="jxr_linenumber" name="L120" href="#L120">120</a> 		doTest();
+<a class="jxr_linenumber" name="L121" href="#L121">121</a> 	}
+<a class="jxr_linenumber" name="L122" href="#L122">122</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>

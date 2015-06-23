@@ -38,7 +38,7 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">	 * @param expected the expected Edge.</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">	 * @param actual the actual Edge.</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> assertEdgeEquals(Edge&lt;String&gt; expected, Edge&lt;String&gt; actual) {
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">void</strong> assertEdgeEquals(Edge&lt;?&gt; expected, Edge&lt;?&gt; actual) {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  		assertEquals(expected.getSource(), actual.getSource());
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  		assertEquals(expected.getDest(), actual.getDest());
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  	}

@@ -78,7 +78,7 @@
 <a class="jxr_linenumber" name="L70" href="#L70">70</a>  			edgeFile = getEdgeFile();
 <a class="jxr_linenumber" name="L71" href="#L71">71</a>  			Iterator&lt;SequenceNode&gt; np = <strong class="jxr_keyword">new</strong> NodeIterator(<strong class="jxr_keyword">new</strong> SequenceNodeFactoryImpl(),
 <a class="jxr_linenumber" name="L72" href="#L72">72</a>  					<strong class="jxr_keyword">new</strong> BufferedReader(<strong class="jxr_keyword">new</strong> InputStreamReader(nodeFile, <span class="jxr_string">"UTF-8"</span>)));
-<a class="jxr_linenumber" name="L73" href="#L73">73</a>  			Iterator&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
+<a class="jxr_linenumber" name="L73" href="#L73">73</a>  			Iterator&lt;Edge&lt;?&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
 <a class="jxr_linenumber" name="L74" href="#L74">74</a>  							<strong class="jxr_keyword">new</strong> InputStreamReader(edgeFile, <span class="jxr_string">"UTF-8"</span>)));
 <a class="jxr_linenumber" name="L75" href="#L75">75</a>  			TreeNode phylo = <strong class="jxr_keyword">new</strong> TreeParser(getTreeFile()).parse();
 <a class="jxr_linenumber" name="L76" href="#L76">76</a>  			db = (Neo4jGraph) <strong class="jxr_keyword">new</strong> Neo4jBatchBuilder(DB_PATH, <strong class="jxr_keyword">new</strong> AnnotationCollectionImpl(), phylo)
@@ -142,7 +142,7 @@
 <a class="jxr_linenumber" name="L134" href="#L134">134</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> testTopologicalOrder() {
 <a class="jxr_linenumber" name="L135" href="#L135">135</a> 		LinkedList&lt;Integer&gt; order = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L136" href="#L136">136</a> 		<strong class="jxr_keyword">try</strong> {
-<a class="jxr_linenumber" name="L137" href="#L137">137</a> 			Iterator&lt;Edge&lt;String&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
+<a class="jxr_linenumber" name="L137" href="#L137">137</a> 			Iterator&lt;Edge&lt;?&gt;&gt; ep = <strong class="jxr_keyword">new</strong> EdgeIterator(<strong class="jxr_keyword">new</strong> BufferedReader(
 <a class="jxr_linenumber" name="L138" href="#L138">138</a> 							<strong class="jxr_keyword">new</strong> InputStreamReader(getEdgeFile(), <span class="jxr_string">"UTF-8"</span>)));
 <a class="jxr_linenumber" name="L139" href="#L139">139</a> 
 <a class="jxr_linenumber" name="L140" href="#L140">140</a> 			db.execute(e -&gt; {
@@ -151,9 +151,9 @@
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 				}
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 			});
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 			<strong class="jxr_keyword">while</strong> (ep.hasNext()) {
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> 				Edge&lt;String&gt; next = ep.next();
-<a class="jxr_linenumber" name="L147" href="#L147">147</a> 				<strong class="jxr_keyword">int</strong> source = Integer.parseInt(next.getSource());
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 				<strong class="jxr_keyword">int</strong> dest = Integer.parseInt(next.getDest());
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> 				Edge&lt;?&gt; next = ep.next();
+<a class="jxr_linenumber" name="L147" href="#L147">147</a> 				<strong class="jxr_keyword">int</strong> source = Integer.parseInt((String) next.getSource());
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 				<strong class="jxr_keyword">int</strong> dest = Integer.parseInt((String) next.getDest());
 <a class="jxr_linenumber" name="L149" href="#L149">149</a> 				assertThat(order.indexOf(source), lessThan(order.indexOf(dest)));
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 			}
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 		} <strong class="jxr_keyword">catch</strong> (NumberFormatException e) {

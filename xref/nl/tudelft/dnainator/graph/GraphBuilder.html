@@ -24,7 +24,7 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  <em class="jxr_javadoccomment">	 * @param edge The edge containing the source and destination node.</em>
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  <em class="jxr_javadoccomment">	 * @return the {@link GraphBuilder}, after adding the edge.</em>
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	GraphBuilder addEdge(Edge&lt;String&gt; edge);
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	GraphBuilder addEdge(Edge&lt;?&gt; edge);
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  <em class="jxr_javadoccomment">	 * Add a {@link SequenceNode} to the graph.</em>
@@ -40,7 +40,7 @@
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 * @throws IOException If something goes wrong with IO while parsing.</em>
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  <em class="jxr_javadoccomment">	 * @return the {@link GraphBuilder}, after adding the nodes and edges.</em>
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">default</strong> <a href="../../../../nl/tudelft/dnainator/graph/GraphBuilder.html">GraphBuilder</a> constructGraph(Iterator&lt;SequenceNode&gt; np, Iterator&lt;Edge&lt;String&gt;&gt; ep)
+<a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<strong class="jxr_keyword">default</strong> <a href="../../../../nl/tudelft/dnainator/graph/GraphBuilder.html">GraphBuilder</a> constructGraph(Iterator&lt;SequenceNode&gt; np, Iterator&lt;Edge&lt;?&gt;&gt; ep)
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  			<strong class="jxr_keyword">throws</strong> IOException {
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  		<strong class="jxr_keyword">try</strong> {
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  			<strong class="jxr_keyword">while</strong> (np.hasNext()) {
