@@ -12,7 +12,7 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> javafx.scene.Node;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javafx.scene.shape.Rectangle;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorServer;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> org.junit.Before;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> org.junit.Test;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> org.junit.runner.RunWith;
@@ -41,7 +41,7 @@
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> setup() {
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  		content = <strong class="jxr_keyword">new</strong> Group();
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  		<em class="jxr_comment">// CHECKSTYLE.OFF: MagicNumber</em>
-<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		strain = <strong class="jxr_keyword">new</strong> Strain(<strong class="jxr_keyword">new</strong> ColorServer(), graph, content);
+<a class="jxr_linenumber" name="L36" href="#L36">36</a>  		strain = <strong class="jxr_keyword">new</strong> Strain(<strong class="jxr_keyword">new</strong> ColorMap(), graph, content);
 <a class="jxr_linenumber" name="L37" href="#L37">37</a>  		<em class="jxr_comment">// CHECKSTYLE.ON: MagicNumber</em>
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  	}
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  

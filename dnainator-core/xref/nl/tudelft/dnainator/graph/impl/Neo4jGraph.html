@@ -203,7 +203,7 @@
 <a class="jxr_linenumber" name="L195" href="#L195">195</a> <em class="jxr_javadoccomment">	 * @return	the result of the query</em>
 <a class="jxr_linenumber" name="L196" href="#L196">196</a> <em class="jxr_javadoccomment">	 */</em>
 <a class="jxr_linenumber" name="L197" href="#L197">197</a> 	<strong class="jxr_keyword">public</strong> &lt;T&gt; T query(Query&lt;T&gt; q) {
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		T res = <strong class="jxr_keyword">null</strong>;
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		T res;
 <a class="jxr_linenumber" name="L199" href="#L199">199</a> 		<strong class="jxr_keyword">try</strong> (Transaction tx = service.beginTx()) {
 <a class="jxr_linenumber" name="L200" href="#L200">200</a> 			res = q.execute(service);
 <a class="jxr_linenumber" name="L201" href="#L201">201</a> 			tx.success();
@@ -250,7 +250,7 @@
 <a class="jxr_linenumber" name="L242" href="#L242">242</a> 
 <a class="jxr_linenumber" name="L243" href="#L243">243</a> 	@Override
 <a class="jxr_linenumber" name="L244" href="#L244">244</a> 	<strong class="jxr_keyword">public</strong> Collection&lt;Annotation&gt; getSubrange(<a href="../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a> r) {
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> 		List&lt;Annotation&gt; result = <strong class="jxr_keyword">new</strong> LinkedList&lt;Annotation&gt;();
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> 		List&lt;Annotation&gt; result = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L246" href="#L246">246</a> 		execute(service -&gt; getAnnotationRange(r, GET_SUB_RANGE).forEachRemaining(a -&gt;
 <a class="jxr_linenumber" name="L247" href="#L247">247</a> 				result.add(<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jAnnotation.html">Neo4jAnnotation</a>(service, a))));
 <a class="jxr_linenumber" name="L248" href="#L248">248</a> 		<strong class="jxr_keyword">return</strong> result;
@@ -258,7 +258,7 @@
 <a class="jxr_linenumber" name="L250" href="#L250">250</a> 
 <a class="jxr_linenumber" name="L251" href="#L251">251</a> 	@Override
 <a class="jxr_linenumber" name="L252" href="#L252">252</a> 	<strong class="jxr_keyword">public</strong> Collection&lt;Annotation&gt; getAnnotationByRank(<a href="../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a> r) {
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		List&lt;Annotation&gt; result = <strong class="jxr_keyword">new</strong> LinkedList&lt;Annotation&gt;();
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 		List&lt;Annotation&gt; result = <strong class="jxr_keyword">new</strong> LinkedList&lt;&gt;();
 <a class="jxr_linenumber" name="L254" href="#L254">254</a> 		execute(service -&gt; getAnnotationRange(r, GET_ANNOTATION_BY_RANK).forEachRemaining(a -&gt;
 <a class="jxr_linenumber" name="L255" href="#L255">255</a> 				result.add(<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/graph/impl/Neo4jAnnotation.html">Neo4jAnnotation</a>(service, a))));
 <a class="jxr_linenumber" name="L256" href="#L256">256</a> 		<strong class="jxr_keyword">return</strong> result;

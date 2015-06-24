@@ -15,7 +15,7 @@
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> javafx.scene.Group;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> javafx.stage.Stage;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
-<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorServer;
+<a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.widgets.Propertyable;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> org.junit.Before;
@@ -33,7 +33,7 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  	<strong class="jxr_keyword">private</strong> AbstractView abstractView;
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  	@Mock <strong class="jxr_keyword">private</strong> Graph graph;
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	@Mock <strong class="jxr_keyword">private</strong> ColorServer colorServer;
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	@Mock <strong class="jxr_keyword">private</strong> ColorMap colorMap;
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  	@Mock <strong class="jxr_keyword">private</strong> Group group;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  	@Mock <strong class="jxr_keyword">private</strong> Propertyable p;
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  	
@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  		<em class="jxr_comment">// CHECKSTYLE.OFF: MagicNumber</em>
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  		Mockito.when(graph.getMaxBasePairs()).thenReturn(0);
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		<em class="jxr_comment">// CHECKSTYLE.ON: MagicNumber</em>
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		abstractView = <strong class="jxr_keyword">new</strong> StrainView(colorServer, graph);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		abstractView = <strong class="jxr_keyword">new</strong> StrainView(colorMap, graph);
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	}
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<em class="jxr_javadoccomment">/**</em>

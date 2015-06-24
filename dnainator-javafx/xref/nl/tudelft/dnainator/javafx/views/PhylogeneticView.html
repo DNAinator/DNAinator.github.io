@@ -13,7 +13,7 @@
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javafx.scene.transform.Scale;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javafx.scene.transform.Transform;
 <a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.tree.TreeNode;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorServer;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.phylogeny.AbstractNode;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.phylogeny.InternalNode;
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.phylogeny.LeafNode;
@@ -27,16 +27,16 @@
 <a class="jxr_linenumber" name="L19" href="#L19">19</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> SCALE = 0.1;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> ZOOM_IN_BOUND = 0.5;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> ZOOM_OUT_BOUND = 0.015;
-<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer;
+<a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  
 <a class="jxr_linenumber" name="L24" href="#L24">24</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">	 * Constructs a new {@link PhylogeneticView}.</em>
-<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">	 * @param colorServer The {@link ColorServer} to communicate with.</em>
+<a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">	 * @param colorMap The {@link ColorMap} to communicate with.</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">	 * @param root The root {@link TreeNode}.</em>
 <a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L29" href="#L29">29</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/views/PhylogeneticView.html">PhylogeneticView</a>(<a href="../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, TreeNode root) {
+<a class="jxr_linenumber" name="L29" href="#L29">29</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/views/PhylogeneticView.html">PhylogeneticView</a>(<a href="../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap, TreeNode root) {
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  		<strong class="jxr_keyword">super</strong>();
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  		<strong class="jxr_keyword">this</strong>.colorServer = colorServer;
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  		<strong class="jxr_keyword">this</strong>.colorMap = colorMap;
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  		redraw(root);
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  	}
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
@@ -63,15 +63,14 @@
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  
 <a class="jxr_linenumber" name="L56" href="#L56">56</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/AbstractNode.html">AbstractNode</a> draw(TreeNode node) {
 <a class="jxr_linenumber" name="L57" href="#L57">57</a>  		<strong class="jxr_keyword">if</strong> (node.getChildren().size() == 0) {
-<a class="jxr_linenumber" name="L58" href="#L58">58</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/LeafNode.html">LeafNode</a>(node, colorServer);
+<a class="jxr_linenumber" name="L58" href="#L58">58</a>  			<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/LeafNode.html">LeafNode</a>(node, colorMap);
 <a class="jxr_linenumber" name="L59" href="#L59">59</a>  		}
 <a class="jxr_linenumber" name="L60" href="#L60">60</a>  
-<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		AbstractNode self = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/InternalNode.html">InternalNode</a>(node.getChildren().stream()
+<a class="jxr_linenumber" name="L61" href="#L61">61</a>  		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/InternalNode.html">InternalNode</a>(node.getChildren().stream()
 <a class="jxr_linenumber" name="L62" href="#L62">62</a>  				.map(<strong class="jxr_keyword">this</strong>::draw)
 <a class="jxr_linenumber" name="L63" href="#L63">63</a>  				.collect(Collectors.toList()));
-<a class="jxr_linenumber" name="L64" href="#L64">64</a>  		<strong class="jxr_keyword">return</strong> self;
-<a class="jxr_linenumber" name="L65" href="#L65">65</a>  	}
-<a class="jxr_linenumber" name="L66" href="#L66">66</a>  }
+<a class="jxr_linenumber" name="L64" href="#L64">64</a>  	}
+<a class="jxr_linenumber" name="L65" href="#L65">65</a>  }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>

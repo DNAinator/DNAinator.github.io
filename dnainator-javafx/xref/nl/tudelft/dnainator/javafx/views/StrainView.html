@@ -12,11 +12,11 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.Annotation;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.EnrichedSequenceNode;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.graph.Graph;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorServer;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.strains.ClusterDrawable;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.drawables.strains.Strain;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.widgets.Minimap;
-<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.widgets.StrainControl;
+<a class="jxr_linenumber" name="L11" href="#L11">11</a>  <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.widgets.JumpTo;
 <a class="jxr_linenumber" name="L12" href="#L12">12</a>  
 <a class="jxr_linenumber" name="L13" href="#L13">13</a>  <strong class="jxr_keyword">import</strong> java.util.Collection;
 <a class="jxr_linenumber" name="L14" href="#L14">14</a>  <strong class="jxr_keyword">import</strong> java.util.NoSuchElementException;
@@ -29,20 +29,20 @@
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  	<strong class="jxr_keyword">private</strong> Graph graph;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a> strain;
 <a class="jxr_linenumber" name="L23" href="#L23">23</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/Minimap.html">Minimap</a> minimap;
-<a class="jxr_linenumber" name="L24" href="#L24">24</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/StrainControl.html">StrainControl</a> control;
+<a class="jxr_linenumber" name="L24" href="#L24">24</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/JumpTo.html">JumpTo</a> jumpto;
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">	 * Creates a new strain view instance.</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">	 * @param colorServer The {@link ColorServer} to communicate with.</em>
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  <em class="jxr_javadoccomment">	 * @param colorMap The {@link ColorMap} to communicate with.</em>
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  <em class="jxr_javadoccomment">	 * @param graph The Graph that holds the strains.</em>
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L31" href="#L31">31</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/views/StrainView.html">StrainView</a>(<a href="../../../../../nl/tudelft/dnainator/javafx/ColorServer.html">ColorServer</a> colorServer, Graph graph) {
+<a class="jxr_linenumber" name="L31" href="#L31">31</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/views/StrainView.html">StrainView</a>(<a href="../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap, Graph graph) {
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  		<strong class="jxr_keyword">super</strong>();
 <a class="jxr_linenumber" name="L33" href="#L33">33</a>  		<strong class="jxr_keyword">this</strong>.graph = graph;
-<a class="jxr_linenumber" name="L34" href="#L34">34</a>  		<strong class="jxr_keyword">this</strong>.strain = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(colorServer, graph);
+<a class="jxr_linenumber" name="L34" href="#L34">34</a>  		<strong class="jxr_keyword">this</strong>.strain = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/drawables/strains/Strain.html">Strain</a>(colorMap, graph);
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  		setTransforms(strain);
-<a class="jxr_linenumber" name="L37" href="#L37">37</a>  		getChildren().addAll(strain, setupStrainControl(), setupMinimap(strain, graph));
+<a class="jxr_linenumber" name="L37" href="#L37">37</a>  		getChildren().addAll(strain, setupJumpTo(), setupMinimap(strain, graph));
 <a class="jxr_linenumber" name="L38" href="#L38">38</a>  		updateStrain();
 <a class="jxr_linenumber" name="L39" href="#L39">39</a>  	}
 <a class="jxr_linenumber" name="L40" href="#L40">40</a>  
@@ -54,10 +54,10 @@
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  		<strong class="jxr_keyword">return</strong> minimap;
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  	}
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  
-<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/StrainControl.html">StrainControl</a> setupStrainControl() {
-<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		control = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/StrainControl.html">StrainControl</a>(<strong class="jxr_keyword">this</strong>);
-<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		control.translateXProperty().bind(widthProperty().subtract(control.widthProperty()));
-<a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<strong class="jxr_keyword">return</strong> control;
+<a class="jxr_linenumber" name="L49" href="#L49">49</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/JumpTo.html">JumpTo</a> setupJumpTo() {
+<a class="jxr_linenumber" name="L50" href="#L50">50</a>  		jumpto = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/JumpTo.html">JumpTo</a>(<strong class="jxr_keyword">this</strong>);
+<a class="jxr_linenumber" name="L51" href="#L51">51</a>  		jumpto.translateXProperty().bind(widthProperty().subtract(jumpto.widthProperty()));
+<a class="jxr_linenumber" name="L52" href="#L52">52</a>  		<strong class="jxr_keyword">return</strong> jumpto;
 <a class="jxr_linenumber" name="L53" href="#L53">53</a>  	}
 <a class="jxr_linenumber" name="L54" href="#L54">54</a>  	
 <a class="jxr_linenumber" name="L55" href="#L55">55</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> updateStrain() {
@@ -151,17 +151,17 @@
 <a class="jxr_linenumber" name="L143" href="#L143">143</a> 	}
 <a class="jxr_linenumber" name="L144" href="#L144">144</a> 
 <a class="jxr_linenumber" name="L145" href="#L145">145</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">	 * @return the {@link StrainControl} of the {@link StrainView}.</em>
+<a class="jxr_linenumber" name="L146" href="#L146">146</a> <em class="jxr_javadoccomment">	 * @return the {@link JumpTo} of the {@link StrainView}.</em>
 <a class="jxr_linenumber" name="L147" href="#L147">147</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L148" href="#L148">148</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/StrainControl.html">StrainControl</a> getStrainControl() {
-<a class="jxr_linenumber" name="L149" href="#L149">149</a> 		<strong class="jxr_keyword">return</strong> control;
+<a class="jxr_linenumber" name="L148" href="#L148">148</a> 	<strong class="jxr_keyword">public</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/JumpTo.html">JumpTo</a> getJumpTo() {
+<a class="jxr_linenumber" name="L149" href="#L149">149</a> 		<strong class="jxr_keyword">return</strong> jumpto;
 <a class="jxr_linenumber" name="L150" href="#L150">150</a> 	}
 <a class="jxr_linenumber" name="L151" href="#L151">151</a> 
 <a class="jxr_linenumber" name="L152" href="#L152">152</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">	 * Toggles the visibility of the {@link StrainControl}.</em>
+<a class="jxr_linenumber" name="L153" href="#L153">153</a> <em class="jxr_javadoccomment">	 * Toggles the visibility of the {@link JumpTo}.</em>
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L155" href="#L155">155</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggleStrainControl() {
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		control.setVisible(!control.isVisible());
+<a class="jxr_linenumber" name="L155" href="#L155">155</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggleJumpTo() {
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 		jumpto.setVisible(!jumpto.isVisible());
 <a class="jxr_linenumber" name="L157" href="#L157">157</a> 	}
 <a class="jxr_linenumber" name="L158" href="#L158">158</a> }
 </pre>
