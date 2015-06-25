@@ -161,115 +161,119 @@
 <a class="jxr_linenumber" name="L153" href="#L153">153</a> 		selectFile(<span class="jxr_string">"GFF file"</span>, GFF, gffField, graphLoadService.gffFileProperty());
 <a class="jxr_linenumber" name="L154" href="#L154">154</a> 	}
 <a class="jxr_linenumber" name="L155" href="#L155">155</a> 
-<a class="jxr_linenumber" name="L156" href="#L156">156</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
-<a class="jxr_linenumber" name="L157" href="#L157">157</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onDRFieldClicked() {
-<a class="jxr_linenumber" name="L158" href="#L158">158</a> 		selectFile(<span class="jxr_string">"DR mutations file"</span>, DR, drField, graphLoadService.drFileProperty());
-<a class="jxr_linenumber" name="L159" href="#L159">159</a> 	}
-<a class="jxr_linenumber" name="L160" href="#L160">160</a> 
-<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	<em class="jxr_comment">/*</em>
-<a class="jxr_linenumber" name="L162" href="#L162">162</a> <em class="jxr_comment">	 * If the open button is clicked, open the files if selected and hide the pane. Clears the</em>
-<a class="jxr_linenumber" name="L163" href="#L163">163</a> <em class="jxr_comment">	 * text fields and updates the current file labels if files are opened.</em>
-<a class="jxr_linenumber" name="L164" href="#L164">164</a> <em class="jxr_comment">	 */</em>
-<a class="jxr_linenumber" name="L165" href="#L165">165</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
-<a class="jxr_linenumber" name="L166" href="#L166">166</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onOpenAction() {
-<a class="jxr_linenumber" name="L167" href="#L167">167</a> 		progressDialog = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/dialogs/ProgressDialog.html">ProgressDialog</a>(container.getScene().getWindow(), graphLoadService);
-<a class="jxr_linenumber" name="L168" href="#L168">168</a> 		resetTextFields();
-<a class="jxr_linenumber" name="L169" href="#L169">169</a> 		animation.toggle();
-<a class="jxr_linenumber" name="L170" href="#L170">170</a> 		<strong class="jxr_keyword">if</strong> (graphLoadService.canLoad()) {
-<a class="jxr_linenumber" name="L171" href="#L171">171</a> 			graphLoadService.setDatabase(graphLoadService.getNewPath());
-<a class="jxr_linenumber" name="L172" href="#L172">172</a> 			graphLoadService.restart();
-<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		}
-<a class="jxr_linenumber" name="L174" href="#L174">174</a> 	}
-<a class="jxr_linenumber" name="L175" href="#L175">175</a> 
-<a class="jxr_linenumber" name="L176" href="#L176">176</a> 	<em class="jxr_comment">/* Clears the files, textfields and hides the pane. */</em>
-<a class="jxr_linenumber" name="L177" href="#L177">177</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
-<a class="jxr_linenumber" name="L178" href="#L178">178</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onCancelAction(ActionEvent actionEvent) {
-<a class="jxr_linenumber" name="L179" href="#L179">179</a> 		animation.toggle();
-<a class="jxr_linenumber" name="L180" href="#L180">180</a> 		graphLoadService.setGffFile(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L181" href="#L181">181</a> 		graphLoadService.setNodeFile(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L182" href="#L182">182</a> 		graphLoadService.setEdgeFile(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		graphLoadService.setNewickFile(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		graphLoadService.setDRFile(<strong class="jxr_keyword">null</strong>);
-<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		graphLoadService.cancel();
-<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		resetTextFields();
-<a class="jxr_linenumber" name="L187" href="#L187">187</a> 	}
-<a class="jxr_linenumber" name="L188" href="#L188">188</a> 
-<a class="jxr_linenumber" name="L189" href="#L189">189</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> resetTextFields() {
-<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		nodeField.clear();
-<a class="jxr_linenumber" name="L191" href="#L191">191</a> 		edgeField.clear();
-<a class="jxr_linenumber" name="L192" href="#L192">192</a> 		newickField.clear();
-<a class="jxr_linenumber" name="L193" href="#L193">193</a> 		gffField.clear();
-<a class="jxr_linenumber" name="L194" href="#L194">194</a> 		drField.clear();
-<a class="jxr_linenumber" name="L195" href="#L195">195</a> 	}
-<a class="jxr_linenumber" name="L196" href="#L196">196</a> 
-<a class="jxr_linenumber" name="L197" href="#L197">197</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L198" href="#L198">198</a> <em class="jxr_javadoccomment">	 * Sets up the {@link FileChooser} to use have the specified title and to use the</em>
-<a class="jxr_linenumber" name="L199" href="#L199">199</a> <em class="jxr_javadoccomment">	 * given extension as a filter.</em>
-<a class="jxr_linenumber" name="L200" href="#L200">200</a> <em class="jxr_javadoccomment">	 *</em>
-<a class="jxr_linenumber" name="L201" href="#L201">201</a> <em class="jxr_javadoccomment">	 * @param title          The title of the {@link FileChooser}.</em>
-<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">	 * @param extension      The value to filter for the</em>
-<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">	 *                       {@link javafx.stage.FileChooser.ExtensionFilter}.</em>
-<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">	 * @param field          The {@link TextField} that has to be updated</em>
-<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">	 * @param objectProperty The file property that has to be set</em>
-<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">	 * @return The selected file, or null if none is chosen.</em>
-<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L208" href="#L208">208</a> 	<strong class="jxr_keyword">private</strong> File selectFile(String title, String extension,
-<a class="jxr_linenumber" name="L209" href="#L209">209</a> 				TextField field, ObjectProperty&lt;File&gt; objectProperty) {
-<a class="jxr_linenumber" name="L210" href="#L210">210</a> 		File file = showFileChooser(title, extension);
-<a class="jxr_linenumber" name="L211" href="#L211">211</a> 		<strong class="jxr_keyword">if</strong> (file != <strong class="jxr_keyword">null</strong>) {
-<a class="jxr_linenumber" name="L212" href="#L212">212</a> 			objectProperty.setValue(file);
-<a class="jxr_linenumber" name="L213" href="#L213">213</a> 			field.setText(file.getAbsolutePath());
-<a class="jxr_linenumber" name="L214" href="#L214">214</a> 		}
-<a class="jxr_linenumber" name="L215" href="#L215">215</a> 		<strong class="jxr_keyword">return</strong> file;
-<a class="jxr_linenumber" name="L216" href="#L216">216</a> 	}
-<a class="jxr_linenumber" name="L217" href="#L217">217</a> 
-<a class="jxr_linenumber" name="L218" href="#L218">218</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L219" href="#L219">219</a> <em class="jxr_javadoccomment">	 * Show the file chooser.</em>
-<a class="jxr_linenumber" name="L220" href="#L220">220</a> <em class="jxr_javadoccomment">	 * @param title		the title</em>
-<a class="jxr_linenumber" name="L221" href="#L221">221</a> <em class="jxr_javadoccomment">	 * @param extension	the extension filter</em>
-<a class="jxr_linenumber" name="L222" href="#L222">222</a> <em class="jxr_javadoccomment">	 * @return		the selected file or null</em>
-<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L224" href="#L224">224</a> 	<strong class="jxr_keyword">public</strong> File showFileChooser(String title, String extension) {
-<a class="jxr_linenumber" name="L225" href="#L225">225</a> 		fileChooser.setTitle(title);
-<a class="jxr_linenumber" name="L226" href="#L226">226</a> 		fileChooser.getExtensionFilters().setAll(
-<a class="jxr_linenumber" name="L227" href="#L227">227</a> 				<strong class="jxr_keyword">new</strong> FileChooser.ExtensionFilter(title, <span class="jxr_string">"*"</span> + extension));
-<a class="jxr_linenumber" name="L228" href="#L228">228</a> 		<strong class="jxr_keyword">return</strong> fileChooser.showOpenDialog(container.getScene().getWindow());
-<a class="jxr_linenumber" name="L229" href="#L229">229</a> 	}
-<a class="jxr_linenumber" name="L230" href="#L230">230</a> 
-<a class="jxr_linenumber" name="L231" href="#L231">231</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L232" href="#L232">232</a> <em class="jxr_javadoccomment">	 * @param path Creates an edge file from the path of a node file. This requires</em>
-<a class="jxr_linenumber" name="L233" href="#L233">233</a> <em class="jxr_javadoccomment">	 *             the edge file to be in the same directory and to have the same name</em>
-<a class="jxr_linenumber" name="L234" href="#L234">234</a> <em class="jxr_javadoccomment">	 *             as the node file.</em>
-<a class="jxr_linenumber" name="L235" href="#L235">235</a> <em class="jxr_javadoccomment">	 * @return The edge file.</em>
-<a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L237" href="#L237">237</a> 	<strong class="jxr_keyword">public</strong> File openEdgeFile(String path) {
-<a class="jxr_linenumber" name="L238" href="#L238">238</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(path.substring(0, path.length() - NODE.length()).concat(EDGE));
-<a class="jxr_linenumber" name="L239" href="#L239">239</a> 	}
-<a class="jxr_linenumber" name="L240" href="#L240">240</a> 
-<a class="jxr_linenumber" name="L241" href="#L241">241</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L242" href="#L242">242</a> <em class="jxr_javadoccomment">	 * @param path Creates a node file from the path of an edge file. This requires</em>
-<a class="jxr_linenumber" name="L243" href="#L243">243</a> <em class="jxr_javadoccomment">	 *             the node file to be in the same directory and to have the same name</em>
-<a class="jxr_linenumber" name="L244" href="#L244">244</a> <em class="jxr_javadoccomment">	 *             as the edge file.</em>
-<a class="jxr_linenumber" name="L245" href="#L245">245</a> <em class="jxr_javadoccomment">	 * @return The edge file.</em>
-<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L247" href="#L247">247</a> 	<strong class="jxr_keyword">public</strong> File openNodeFile(String path) {
-<a class="jxr_linenumber" name="L248" href="#L248">248</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(path.substring(0, path.length() - EDGE.length()).concat(NODE));
-<a class="jxr_linenumber" name="L249" href="#L249">249</a> 	}
-<a class="jxr_linenumber" name="L250" href="#L250">250</a> 
-<a class="jxr_linenumber" name="L251" href="#L251">251</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L252" href="#L252">252</a> <em class="jxr_javadoccomment">	 * @return The {@link Graph} property.</em>
-<a class="jxr_linenumber" name="L253" href="#L253">253</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L254" href="#L254">254</a> 	<strong class="jxr_keyword">public</strong> ObjectProperty&lt;Graph&gt; graphProperty() {
-<a class="jxr_linenumber" name="L255" href="#L255">255</a> 		<strong class="jxr_keyword">return</strong> graphProperty;
-<a class="jxr_linenumber" name="L256" href="#L256">256</a> 	}
-<a class="jxr_linenumber" name="L257" href="#L257">257</a> 	
-<a class="jxr_linenumber" name="L258" href="#L258">258</a> 	<em class="jxr_javadoccomment">/**</em>
-<a class="jxr_linenumber" name="L259" href="#L259">259</a> <em class="jxr_javadoccomment">	 * Toggles the pane, showing or hiding it with a sliding animation.</em>
-<a class="jxr_linenumber" name="L260" href="#L260">260</a> <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L261" href="#L261">261</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggle() {
-<a class="jxr_linenumber" name="L262" href="#L262">262</a> 		animation.toggle();
-<a class="jxr_linenumber" name="L263" href="#L263">263</a> 	}
-<a class="jxr_linenumber" name="L264" href="#L264">264</a> }
+<a class="jxr_linenumber" name="L156" href="#L156">156</a> 	<em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L157" href="#L157">157</a> <em class="jxr_comment">	 * If the DR textfield is clicked, open the filechooser and if a file is selected,</em>
+<a class="jxr_linenumber" name="L158" href="#L158">158</a> <em class="jxr_comment">	 * fill in the DR textfield.</em>
+<a class="jxr_linenumber" name="L159" href="#L159">159</a> <em class="jxr_comment">	 */</em>
+<a class="jxr_linenumber" name="L160" href="#L160">160</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
+<a class="jxr_linenumber" name="L161" href="#L161">161</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onDRFieldClicked() {
+<a class="jxr_linenumber" name="L162" href="#L162">162</a> 		selectFile(<span class="jxr_string">"DR mutations file"</span>, DR, drField, graphLoadService.drFileProperty());
+<a class="jxr_linenumber" name="L163" href="#L163">163</a> 	}
+<a class="jxr_linenumber" name="L164" href="#L164">164</a> 
+<a class="jxr_linenumber" name="L165" href="#L165">165</a> 	<em class="jxr_comment">/*</em>
+<a class="jxr_linenumber" name="L166" href="#L166">166</a> <em class="jxr_comment">	 * If the open button is clicked, open the files if selected and hide the pane. Clears the</em>
+<a class="jxr_linenumber" name="L167" href="#L167">167</a> <em class="jxr_comment">	 * text fields and updates the current file labels if files are opened.</em>
+<a class="jxr_linenumber" name="L168" href="#L168">168</a> <em class="jxr_comment">	 */</em>
+<a class="jxr_linenumber" name="L169" href="#L169">169</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
+<a class="jxr_linenumber" name="L170" href="#L170">170</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onOpenAction() {
+<a class="jxr_linenumber" name="L171" href="#L171">171</a> 		progressDialog = <strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/javafx/widgets/dialogs/ProgressDialog.html">ProgressDialog</a>(container.getScene().getWindow(), graphLoadService);
+<a class="jxr_linenumber" name="L172" href="#L172">172</a> 		resetTextFields();
+<a class="jxr_linenumber" name="L173" href="#L173">173</a> 		animation.toggle();
+<a class="jxr_linenumber" name="L174" href="#L174">174</a> 		<strong class="jxr_keyword">if</strong> (graphLoadService.canLoad()) {
+<a class="jxr_linenumber" name="L175" href="#L175">175</a> 			graphLoadService.setDatabase(graphLoadService.getNewPath());
+<a class="jxr_linenumber" name="L176" href="#L176">176</a> 			graphLoadService.restart();
+<a class="jxr_linenumber" name="L177" href="#L177">177</a> 		}
+<a class="jxr_linenumber" name="L178" href="#L178">178</a> 	}
+<a class="jxr_linenumber" name="L179" href="#L179">179</a> 
+<a class="jxr_linenumber" name="L180" href="#L180">180</a> 	<em class="jxr_comment">/* Clears the files, textfields and hides the pane. */</em>
+<a class="jxr_linenumber" name="L181" href="#L181">181</a> 	@SuppressWarnings(<span class="jxr_string">"unused"</span>) @FXML
+<a class="jxr_linenumber" name="L182" href="#L182">182</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> onCancelAction(ActionEvent actionEvent) {
+<a class="jxr_linenumber" name="L183" href="#L183">183</a> 		animation.toggle();
+<a class="jxr_linenumber" name="L184" href="#L184">184</a> 		graphLoadService.setGffFile(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L185" href="#L185">185</a> 		graphLoadService.setNodeFile(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L186" href="#L186">186</a> 		graphLoadService.setEdgeFile(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L187" href="#L187">187</a> 		graphLoadService.setNewickFile(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L188" href="#L188">188</a> 		graphLoadService.setDRFile(<strong class="jxr_keyword">null</strong>);
+<a class="jxr_linenumber" name="L189" href="#L189">189</a> 		graphLoadService.cancel();
+<a class="jxr_linenumber" name="L190" href="#L190">190</a> 		resetTextFields();
+<a class="jxr_linenumber" name="L191" href="#L191">191</a> 	}
+<a class="jxr_linenumber" name="L192" href="#L192">192</a> 
+<a class="jxr_linenumber" name="L193" href="#L193">193</a> 	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">void</strong> resetTextFields() {
+<a class="jxr_linenumber" name="L194" href="#L194">194</a> 		nodeField.clear();
+<a class="jxr_linenumber" name="L195" href="#L195">195</a> 		edgeField.clear();
+<a class="jxr_linenumber" name="L196" href="#L196">196</a> 		newickField.clear();
+<a class="jxr_linenumber" name="L197" href="#L197">197</a> 		gffField.clear();
+<a class="jxr_linenumber" name="L198" href="#L198">198</a> 		drField.clear();
+<a class="jxr_linenumber" name="L199" href="#L199">199</a> 	}
+<a class="jxr_linenumber" name="L200" href="#L200">200</a> 
+<a class="jxr_linenumber" name="L201" href="#L201">201</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L202" href="#L202">202</a> <em class="jxr_javadoccomment">	 * Sets up the {@link FileChooser} to use have the specified title and to use the</em>
+<a class="jxr_linenumber" name="L203" href="#L203">203</a> <em class="jxr_javadoccomment">	 * given extension as a filter.</em>
+<a class="jxr_linenumber" name="L204" href="#L204">204</a> <em class="jxr_javadoccomment">	 *</em>
+<a class="jxr_linenumber" name="L205" href="#L205">205</a> <em class="jxr_javadoccomment">	 * @param title          The title of the {@link FileChooser}.</em>
+<a class="jxr_linenumber" name="L206" href="#L206">206</a> <em class="jxr_javadoccomment">	 * @param extension      The value to filter for the</em>
+<a class="jxr_linenumber" name="L207" href="#L207">207</a> <em class="jxr_javadoccomment">	 *                       {@link javafx.stage.FileChooser.ExtensionFilter}.</em>
+<a class="jxr_linenumber" name="L208" href="#L208">208</a> <em class="jxr_javadoccomment">	 * @param field          The {@link TextField} that has to be updated</em>
+<a class="jxr_linenumber" name="L209" href="#L209">209</a> <em class="jxr_javadoccomment">	 * @param objectProperty The file property that has to be set</em>
+<a class="jxr_linenumber" name="L210" href="#L210">210</a> <em class="jxr_javadoccomment">	 * @return The selected file, or null if none is chosen.</em>
+<a class="jxr_linenumber" name="L211" href="#L211">211</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L212" href="#L212">212</a> 	<strong class="jxr_keyword">private</strong> File selectFile(String title, String extension,
+<a class="jxr_linenumber" name="L213" href="#L213">213</a> 				TextField field, ObjectProperty&lt;File&gt; objectProperty) {
+<a class="jxr_linenumber" name="L214" href="#L214">214</a> 		File file = showFileChooser(title, extension);
+<a class="jxr_linenumber" name="L215" href="#L215">215</a> 		<strong class="jxr_keyword">if</strong> (file != <strong class="jxr_keyword">null</strong>) {
+<a class="jxr_linenumber" name="L216" href="#L216">216</a> 			objectProperty.setValue(file);
+<a class="jxr_linenumber" name="L217" href="#L217">217</a> 			field.setText(file.getAbsolutePath());
+<a class="jxr_linenumber" name="L218" href="#L218">218</a> 		}
+<a class="jxr_linenumber" name="L219" href="#L219">219</a> 		<strong class="jxr_keyword">return</strong> file;
+<a class="jxr_linenumber" name="L220" href="#L220">220</a> 	}
+<a class="jxr_linenumber" name="L221" href="#L221">221</a> 
+<a class="jxr_linenumber" name="L222" href="#L222">222</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L223" href="#L223">223</a> <em class="jxr_javadoccomment">	 * Show the file chooser.</em>
+<a class="jxr_linenumber" name="L224" href="#L224">224</a> <em class="jxr_javadoccomment">	 * @param title		the title</em>
+<a class="jxr_linenumber" name="L225" href="#L225">225</a> <em class="jxr_javadoccomment">	 * @param extension	the extension filter</em>
+<a class="jxr_linenumber" name="L226" href="#L226">226</a> <em class="jxr_javadoccomment">	 * @return		the selected file or null</em>
+<a class="jxr_linenumber" name="L227" href="#L227">227</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L228" href="#L228">228</a> 	<strong class="jxr_keyword">public</strong> File showFileChooser(String title, String extension) {
+<a class="jxr_linenumber" name="L229" href="#L229">229</a> 		fileChooser.setTitle(title);
+<a class="jxr_linenumber" name="L230" href="#L230">230</a> 		fileChooser.getExtensionFilters().setAll(
+<a class="jxr_linenumber" name="L231" href="#L231">231</a> 				<strong class="jxr_keyword">new</strong> FileChooser.ExtensionFilter(title, <span class="jxr_string">"*"</span> + extension));
+<a class="jxr_linenumber" name="L232" href="#L232">232</a> 		<strong class="jxr_keyword">return</strong> fileChooser.showOpenDialog(container.getScene().getWindow());
+<a class="jxr_linenumber" name="L233" href="#L233">233</a> 	}
+<a class="jxr_linenumber" name="L234" href="#L234">234</a> 
+<a class="jxr_linenumber" name="L235" href="#L235">235</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L236" href="#L236">236</a> <em class="jxr_javadoccomment">	 * @param path Creates an edge file from the path of a node file. This requires</em>
+<a class="jxr_linenumber" name="L237" href="#L237">237</a> <em class="jxr_javadoccomment">	 *             the edge file to be in the same directory and to have the same name</em>
+<a class="jxr_linenumber" name="L238" href="#L238">238</a> <em class="jxr_javadoccomment">	 *             as the node file.</em>
+<a class="jxr_linenumber" name="L239" href="#L239">239</a> <em class="jxr_javadoccomment">	 * @return The edge file.</em>
+<a class="jxr_linenumber" name="L240" href="#L240">240</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L241" href="#L241">241</a> 	<strong class="jxr_keyword">public</strong> File openEdgeFile(String path) {
+<a class="jxr_linenumber" name="L242" href="#L242">242</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(path.substring(0, path.length() - NODE.length()).concat(EDGE));
+<a class="jxr_linenumber" name="L243" href="#L243">243</a> 	}
+<a class="jxr_linenumber" name="L244" href="#L244">244</a> 
+<a class="jxr_linenumber" name="L245" href="#L245">245</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L246" href="#L246">246</a> <em class="jxr_javadoccomment">	 * @param path Creates a node file from the path of an edge file. This requires</em>
+<a class="jxr_linenumber" name="L247" href="#L247">247</a> <em class="jxr_javadoccomment">	 *             the node file to be in the same directory and to have the same name</em>
+<a class="jxr_linenumber" name="L248" href="#L248">248</a> <em class="jxr_javadoccomment">	 *             as the edge file.</em>
+<a class="jxr_linenumber" name="L249" href="#L249">249</a> <em class="jxr_javadoccomment">	 * @return The edge file.</em>
+<a class="jxr_linenumber" name="L250" href="#L250">250</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L251" href="#L251">251</a> 	<strong class="jxr_keyword">public</strong> File openNodeFile(String path) {
+<a class="jxr_linenumber" name="L252" href="#L252">252</a> 		<strong class="jxr_keyword">return</strong> <strong class="jxr_keyword">new</strong> File(path.substring(0, path.length() - EDGE.length()).concat(NODE));
+<a class="jxr_linenumber" name="L253" href="#L253">253</a> 	}
+<a class="jxr_linenumber" name="L254" href="#L254">254</a> 
+<a class="jxr_linenumber" name="L255" href="#L255">255</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L256" href="#L256">256</a> <em class="jxr_javadoccomment">	 * @return The {@link Graph} property.</em>
+<a class="jxr_linenumber" name="L257" href="#L257">257</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L258" href="#L258">258</a> 	<strong class="jxr_keyword">public</strong> ObjectProperty&lt;Graph&gt; graphProperty() {
+<a class="jxr_linenumber" name="L259" href="#L259">259</a> 		<strong class="jxr_keyword">return</strong> graphProperty;
+<a class="jxr_linenumber" name="L260" href="#L260">260</a> 	}
+<a class="jxr_linenumber" name="L261" href="#L261">261</a> 	
+<a class="jxr_linenumber" name="L262" href="#L262">262</a> 	<em class="jxr_javadoccomment">/**</em>
+<a class="jxr_linenumber" name="L263" href="#L263">263</a> <em class="jxr_javadoccomment">	 * Toggles the pane, showing or hiding it with a sliding animation.</em>
+<a class="jxr_linenumber" name="L264" href="#L264">264</a> <em class="jxr_javadoccomment">	 */</em>
+<a class="jxr_linenumber" name="L265" href="#L265">265</a> 	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> toggle() {
+<a class="jxr_linenumber" name="L266" href="#L266">266</a> 		animation.toggle();
+<a class="jxr_linenumber" name="L267" href="#L267">267</a> 	}
+<a class="jxr_linenumber" name="L268" href="#L268">268</a> }
 </pre>
 <hr/>
 <div id="footer">Copyright &#169; 2015. All rights reserved.</div>

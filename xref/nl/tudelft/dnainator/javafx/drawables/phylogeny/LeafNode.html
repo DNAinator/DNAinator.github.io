@@ -11,9 +11,9 @@
 <a class="jxr_linenumber" name="L3" href="#L3">3</a>   <strong class="jxr_keyword">import</strong> javafx.collections.MapChangeListener;
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> javafx.scene.text.Text;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javafx.scene.text.TextAlignment;
-<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.tree.TreeNode;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.exceptions.AllColorsInUseException;
-<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
+<a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.impl.TreeNode;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.ColorMap;
+<a class="jxr_linenumber" name="L8" href="#L8">8</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.exceptions.AllColorsInUseException;
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.javafx.widgets.dialogs.ExceptionDialog;
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  
 <a class="jxr_linenumber" name="L11" href="#L11">11</a>  <em class="jxr_javadoccomment">/**</em>
@@ -24,7 +24,7 @@
 <a class="jxr_linenumber" name="L16" href="#L16">16</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">double</strong> LEAFHEIGHT = 300;
 <a class="jxr_linenumber" name="L17" href="#L17">17</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LABEL_X_OFFSET = 80;
 <a class="jxr_linenumber" name="L18" href="#L18">18</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">static</strong> <strong class="jxr_keyword">final</strong> <strong class="jxr_keyword">int</strong> LABEL_Y_OFFSET = 40;
-<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/tree/TreeNode.html">TreeNode</a> node;
+<a class="jxr_linenumber" name="L19" href="#L19">19</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/core/impl/TreeNode.html">TreeNode</a> node;
 <a class="jxr_linenumber" name="L20" href="#L20">20</a>  	<strong class="jxr_keyword">private</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap;
 <a class="jxr_linenumber" name="L21" href="#L21">21</a>  	<strong class="jxr_keyword">private</strong> <strong class="jxr_keyword">boolean</strong> highlighted;
 <a class="jxr_linenumber" name="L22" href="#L22">22</a>  
@@ -33,7 +33,7 @@
 <a class="jxr_linenumber" name="L25" href="#L25">25</a>  <em class="jxr_javadoccomment">	 * @param node The original treenode.</em>
 <a class="jxr_linenumber" name="L26" href="#L26">26</a>  <em class="jxr_javadoccomment">	 * @param colorMap The {@link ColorMap} to bind to for colors.</em>
 <a class="jxr_linenumber" name="L27" href="#L27">27</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/LeafNode.html">LeafNode</a>(<a href="../../../../../../nl/tudelft/dnainator/tree/TreeNode.html">TreeNode</a> node, <a href="../../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap) {
+<a class="jxr_linenumber" name="L28" href="#L28">28</a>  	<strong class="jxr_keyword">public</strong> <a href="../../../../../../nl/tudelft/dnainator/javafx/drawables/phylogeny/LeafNode.html">LeafNode</a>(<a href="../../../../../../nl/tudelft/dnainator/core/impl/TreeNode.html">TreeNode</a> node, <a href="../../../../../../nl/tudelft/dnainator/javafx/ColorMap.html">ColorMap</a> colorMap) {
 <a class="jxr_linenumber" name="L29" href="#L29">29</a>  		<strong class="jxr_keyword">this</strong>.node = node;
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  		Text label = <strong class="jxr_keyword">new</strong> Text(LABEL_X_OFFSET, LABEL_Y_OFFSET, node.getName());
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  		label.onMouseClickedProperty().bind(shape.onMouseClickedProperty());

@@ -12,7 +12,7 @@
 <a class="jxr_linenumber" name="L4" href="#L4">4</a>   <strong class="jxr_keyword">import</strong> javafx.beans.property.SimpleIntegerProperty;
 <a class="jxr_linenumber" name="L5" href="#L5">5</a>   <strong class="jxr_keyword">import</strong> javafx.geometry.Bounds;
 <a class="jxr_linenumber" name="L6" href="#L6">6</a>   <strong class="jxr_keyword">import</strong> javafx.scene.Group;
-<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.annotation.Range;
+<a class="jxr_linenumber" name="L7" href="#L7">7</a>   <strong class="jxr_keyword">import</strong> nl.tudelft.dnainator.core.Range;
 <a class="jxr_linenumber" name="L8" href="#L8">8</a>   
 <a class="jxr_linenumber" name="L9" href="#L9">9</a>   <em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L10" href="#L10">10</a>  <em class="jxr_javadoccomment"> * An abstract drawable that enables a semantic display of data.</em>
@@ -38,7 +38,7 @@
 <a class="jxr_linenumber" name="L30" href="#L30">30</a>  <em class="jxr_javadoccomment">	 * @param range The minimum and maximum range that are in view at the moment.</em>
 <a class="jxr_linenumber" name="L31" href="#L31">31</a>  <em class="jxr_javadoccomment">	 * @param zoom The current (geometric) zoom level.</em>
 <a class="jxr_linenumber" name="L32" href="#L32">32</a>  <em class="jxr_javadoccomment">	 */</em>
-<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">void</strong> loadContent(<a href="../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a> range, <strong class="jxr_keyword">double</strong> zoom);
+<a class="jxr_linenumber" name="L33" href="#L33">33</a>  	<strong class="jxr_keyword">protected</strong> <strong class="jxr_keyword">abstract</strong> <strong class="jxr_keyword">void</strong> loadContent(<a href="../../../../../nl/tudelft/dnainator/core/Range.html">Range</a> range, <strong class="jxr_keyword">double</strong> zoom);
 <a class="jxr_linenumber" name="L34" href="#L34">34</a>  
 <a class="jxr_linenumber" name="L35" href="#L35">35</a>  	<em class="jxr_javadoccomment">/**</em>
 <a class="jxr_linenumber" name="L36" href="#L36">36</a>  <em class="jxr_javadoccomment">	 * Update method that should be called after scaling.</em>
@@ -50,7 +50,7 @@
 <a class="jxr_linenumber" name="L42" href="#L42">42</a>  	<strong class="jxr_keyword">public</strong> <strong class="jxr_keyword">void</strong> update(Bounds bounds, <strong class="jxr_keyword">double</strong> zoom) {
 <a class="jxr_linenumber" name="L43" href="#L43">43</a>  		minRank.set((<strong class="jxr_keyword">int</strong>) (Math.max(bounds.getMinX() / RANK_WIDTH, 0)));
 <a class="jxr_linenumber" name="L44" href="#L44">44</a>  		maxRank.set((<strong class="jxr_keyword">int</strong>) (RANK_WIDTH + bounds.getMaxX() / RANK_WIDTH));
-<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		loadContent(<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/annotation/Range.html">Range</a>(minRank.get(), maxRank.get()), zoom);
+<a class="jxr_linenumber" name="L45" href="#L45">45</a>  		loadContent(<strong class="jxr_keyword">new</strong> <a href="../../../../../nl/tudelft/dnainator/core/Range.html">Range</a>(minRank.get(), maxRank.get()), zoom);
 <a class="jxr_linenumber" name="L46" href="#L46">46</a>  	}
 <a class="jxr_linenumber" name="L47" href="#L47">47</a>  
 <a class="jxr_linenumber" name="L48" href="#L48">48</a>  	<em class="jxr_javadoccomment">/**</em>

@@ -5,6 +5,7 @@ nl.tudelft.dnainator.core.impl
 nl.tudelft.dnainator.graph
 nl.tudelft.dnainator.graph.impl
 nl.tudelft.dnainator.graph.impl.command
+nl.tudelft.dnainator.graph.impl.nodes
 nl.tudelft.dnainator.graph.impl.properties
 nl.tudelft.dnainator.graph.impl.query
 nl.tudelft.dnainator.graph.interestingness
@@ -13,4 +14,3 @@ nl.tudelft.dnainator.graph.query
 nl.tudelft.dnainator.parser
 nl.tudelft.dnainator.parser.exceptions
 nl.tudelft.dnainator.parser.impl
-nl.tudelft.dnainator.tree
